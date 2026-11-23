@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar } from 'native-base';
-import { select, number, text } from '@storybook/addon-knobs';
+import { select, number, text } from '../../../../controls';
 
 export const Example = () => {
   return (

@@ -8,7 +8,7 @@ import { Stack } from '../Stack';
 import { usePropsResolution } from '../../../hooks/useThemeProps';
 import { wrapStringChild } from '../../../utils/wrapStringChild';
 import type { IRadioProps } from './types';
-import { useRadio } from '@react-native-aria/radio';
+import { useRadio } from '../../../aria/radio';
 import { RadioContext } from './RadioGroup';
 import { mergeRefs } from '../../../utils';
 import { CircleIcon } from '../Icon/Icons';
@@ -130,7 +130,7 @@ const RadioComponent = memo(
               <Box {..._interactionBox} />
               {/* radio */}
               <Center {...resolvedProps}>
-                {icon && sizedIcon && isChecked ? (
+                {icon && isChecked ? (
                   sizedIcon()
                 ) : (
                   <CircleIcon {..._icon} opacity={isChecked ? 1 : 0} />
@@ -165,7 +165,7 @@ const Radio = (
     { ...formControlContext, ...contextState },
     props
   );
-  const inputRef = React.useRef(null);
+  const inputRef = React.useRef<any>(null);
   const radioState = useRadio(
     { ...combinedProps, 'aria-label': props.accessibilityLabel, children },
     contextState.state ?? {},
@@ -173,10 +173,10 @@ const Radio = (
   );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const inputProps = React.useMemo(() => radioState.inputProps, [
-    radioState.inputProps.checked,
-    radioState.inputProps.disabled,
-  ]);
+  const inputProps = React.useMemo(
+    () => radioState.inputProps,
+    [radioState.inputProps.checked, radioState.inputProps.disabled]
+  );
 
   const contextCombinedProps = React.useMemo(() => {
     return { ...combinedProps };

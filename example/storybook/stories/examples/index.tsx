@@ -1,14 +1,13 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from '../components/Wrapper';
 import { Example as TodoApp } from './TodoApp';
 import { Example as Signin } from './Signin';
 import { Example as Signup } from './Signup';
 
-storiesOf('Examples', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Todo App', () => <TodoApp />)
-  .add('Signin Screen', () => <Signin />)
-  .add('Signup Screen', () => <Signup />);
+export default {
+  title: 'Examples',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Todo App', render: () => <TodoApp /> };
+export const Story2 = { name: 'Signin Screen', render: () => <Signin /> };
+export const Story3 = { name: 'Signup Screen', render: () => <Signup /> };

@@ -19,7 +19,7 @@ const NumberInput = ({ children, ...props }: INumberInputProps, ref?: any) => {
   const formControlContext = useFormControlContext();
 
   const [numberInputValue, setNumberInputValue] = React.useState(
-    parseInt(value || defaultValue, 10)
+    Number(value ?? defaultValue ?? 0)
   );
   const [numberInputStepper, setNumberInputStepper] = React.useState(null);
   const handleChange = (newValue: number) => {
@@ -38,8 +38,8 @@ const NumberInput = ({ children, ...props }: INumberInputProps, ref?: any) => {
   };
 
   React.useEffect(() => {
-    if (value !== undefined && value != numberInputValue)
-      setNumberInputValue(value);
+    if (value !== undefined && Number(value) !== numberInputValue)
+      setNumberInputValue(Number(value));
   }, [value, numberInputValue, setNumberInputValue]);
   //TODO: refactor for responsive prop
   if (useHasResponsiveProps(props)) {

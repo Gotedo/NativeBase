@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { PlatformProps } from '../components/types';
 import type { StyledProps } from '../theme/types';
 import type { IStateProps } from '../hooks/useThemeProps/propsFlattener';

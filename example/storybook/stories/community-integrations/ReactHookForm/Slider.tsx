@@ -7,7 +7,11 @@ interface IFormInput {
 }
 
 export const Example = () => {
-  const { control, handleSubmit, errors } = useForm<IFormInput>();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
   const onSubmit = (data: IFormInput) => {
     console.log('submiting with ', data);
   };
@@ -17,7 +21,7 @@ export const Example = () => {
         <FormControl.Label>Amount you like NativeBase</FormControl.Label>
         <Controller
           control={control}
-          render={({ onChange, value }) => (
+          render={({ field: { onChange, value } }) => (
             <Slider onChange={(val) => onChange(val)} defaultValue={value}>
               <Slider.Track>
                 <Slider.FilledTrack />
@@ -33,7 +37,7 @@ export const Example = () => {
           {errors.like?.message}
         </FormControl.ErrorMessage>
       </FormControl>
-      <Button onPress={handleSubmit(onSubmit)} colorScheme="pink">
+      <Button onPress={() => handleSubmit(onSubmit)()} colorScheme="pink">
         Submit
       </Button>
     </VStack>

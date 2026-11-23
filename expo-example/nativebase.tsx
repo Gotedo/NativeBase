@@ -81,24 +81,25 @@ const Example = () => {
   // });
 
   // const toast = useToast();
-  return (
-    <View>
-      <Box
-        alignSelf="center"
-        // bg="primary.500"
-        _text={{
-          fontSize: 'md',
-          fontWeight: 'medium',
-          color: 'warmGray.50',
-          letterSpacing: 'lg',
-        }}
-        bg={['red.400', 'blue.400']}
-        shadow={[8, 1]}
-      >
-        This is a Box
-      </Box>
-    </View>
-  );
+  if (!showModal)
+    return (
+      <View>
+        <Box
+          alignSelf="center"
+          // bg="primary.500"
+          _text={{
+            fontSize: 'md',
+            fontWeight: 'medium',
+            color: 'warmGray.50',
+            letterSpacing: 'lg',
+          }}
+          bg={['red.400', 'blue.400']}
+          shadow={[8, 1]}
+        >
+          This is a Box
+        </Box>
+      </View>
+    );
 
   return (
     <View>

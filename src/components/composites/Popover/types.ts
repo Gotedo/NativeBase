@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { ColorValue } from 'react-native';
 import type { InterfaceBoxProps } from '../../primitives/Box';
 import type { IIconButtonProps } from '../../composites/IconButton';
@@ -137,8 +138,7 @@ export type IScrollContentStyle = {
   arrowWidth: number;
 };
 
-export interface IPopoverContentProps
-  extends InterfaceBoxProps<IPopoverContentProps> {}
+export interface IPopoverContentProps extends InterfaceBoxProps<IPopoverContentProps> {}
 
 export type IPopoverComponentType = ((
   props: IPopoverProps & { ref?: MutableRefObject<any> }

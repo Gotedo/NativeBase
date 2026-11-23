@@ -3,7 +3,7 @@ import { Stack } from '../Stack';
 import { useFormControlContext } from '../../composites/FormControl';
 import type { IRadioContext, IRadioGroupProps } from './types';
 import { useRadioGroupState } from '@react-stately/radio';
-import { useRadioGroup } from '@react-native-aria/radio';
+import { useRadioGroup } from '../../../aria/radio';
 import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
 import { usePropsResolution } from '../../../hooks/useThemeProps';
 
@@ -21,9 +21,14 @@ const RadioGroup = (
 ) => {
   const formControlContext = useFormControlContext();
 
-  const state = useRadioGroupState(props);
+  const { onFocus: _onFocus, onBlur: _onBlur, ...ariaProps } = props;
+  const state = useRadioGroupState(ariaProps);
   const radioGroupState = useRadioGroup(
-    { ...formControlContext, ...props, 'aria-label': props.accessibilityLabel },
+    {
+      ...formControlContext,
+      ...ariaProps,
+      'aria-label': props.accessibilityLabel,
+    },
     state
   );
   const [propsState] = React.useState(props);

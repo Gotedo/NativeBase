@@ -3,7 +3,9 @@ import { Radio } from 'native-base';
 import { Platform } from 'react-native';
 
 export const Example = () => {
-  const myRef = React.useRef({});
+  const myRef = React.useRef<React.ElementRef<
+    typeof import('react-native').View
+  > | null>(null);
 
   return (
     <Radio.Group

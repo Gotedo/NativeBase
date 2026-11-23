@@ -8,7 +8,6 @@ export const Example = () => {
     <Box flex={1} justifyContent="center" safeArea>
       <StatusBar
         animated={true}
-        backgroundColor="#61dafb"
         barStyle="default"
         showHideTransition="fade"
         hidden={hidden}

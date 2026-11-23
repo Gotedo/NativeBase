@@ -1,6 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../Wrapper';
 import { UsingComponent } from './UsingComponent';
 import { UsingComponentWithRenderItem } from './UsingComponentWithRenderItem';
@@ -8,11 +6,24 @@ import { UsingControlledInput } from './UsingControlledInput';
 import { UsingWithAPI } from './UsingWithAPI';
 import { UsingHook } from './UsingHook';
 
-storiesOf('Typeahead', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic', () => <UsingComponent />)
-  .add('Using render item', () => <UsingComponentWithRenderItem />)
-  .add('Using Controlled input', () => <UsingControlledInput />)
-  .add('Using with async API', () => <UsingWithAPI />)
-  .add('Custom Typeahead using useTypeahead hook', () => <UsingHook />);
+export default {
+  title: 'Typeahead',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Basic', render: () => <UsingComponent /> };
+export const Story2 = {
+  name: 'Using render item',
+  render: () => <UsingComponentWithRenderItem />,
+};
+export const Story3 = {
+  name: 'Using Controlled input',
+  render: () => <UsingControlledInput />,
+};
+export const Story4 = {
+  name: 'Using with async API',
+  render: () => <UsingWithAPI />,
+};
+export const Story5 = {
+  name: 'Custom Typeahead using useTypeahead hook',
+  render: () => <UsingHook />,
+};

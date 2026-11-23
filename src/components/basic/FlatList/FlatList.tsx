@@ -14,11 +14,8 @@ const FlatListComponent = <ItemT extends any>(
   props: IFlatListProps<ItemT>,
   ref: any
 ) => {
-  const {
-    _contentContainerStyle,
-    contentContainerStyle,
-    ...resolvedProps
-  } = usePropsResolution('FlatList', props);
+  const { _contentContainerStyle, contentContainerStyle, ...resolvedProps } =
+    usePropsResolution('FlatList', props);
   const resolved_ContentContainerStyle = useStyledSystemPropsResolver(
     _contentContainerStyle || {}
   );
@@ -38,6 +35,5 @@ const FlatListComponent = <ItemT extends any>(
 };
 
 export const FlatList = forwardRef(FlatListComponent) as <ItemT>(
-  props: IFlatListProps<ItemT>,
-  ref: any
-) => any;
+  props: IFlatListProps<ItemT> & React.RefAttributes<RNFlatList<ItemT>>
+) => React.ReactElement | null;

@@ -14,7 +14,7 @@ const colorModeManager: StorageManager = {
   },
   set: async (value: ColorMode) => {
     try {
-      await AsyncStorage.setItem('@color-mode', value);
+      await AsyncStorage.setItem('@color-mode', value ?? 'light');
     } catch (e) {
       console.log(e);
     }

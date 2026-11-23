@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { InterfacePressableProps } from '../../primitives/Pressable/types';
 import type { IIconProps } from '../../primitives/Icon';
 import type { ColorSchemeType, PlatformProps } from '../../../components/types';
@@ -5,7 +6,8 @@ import type { ColorSchemeType, PlatformProps } from '../../../components/types';
 import type { CustomProps, VariantType } from '../../types';
 import type { ThemeComponentSizeType } from '../../../components/types/utils';
 export interface InterfaceIconButtonProps
-  extends Omit<
+  extends
+    Omit<
       InterfacePressableProps<InterfaceIconButtonProps>,
       | 'children'
       | 'color'
@@ -18,6 +20,7 @@ export interface InterfaceIconButtonProps
     >,
     Omit<
       IIconProps,
+      | keyof InterfacePressableProps<InterfaceIconButtonProps>
       | 'delayLongPress'
       | 'disabled'
       | 'hitSlop'
@@ -39,6 +42,8 @@ export interface InterfaceIconButtonProps
    * The color of the radio when it's checked. This should be one of the color keys in the theme (e.g."green", "red").
    * @default 'primary'
    */
+  children?: React.ReactNode;
+  color?: IIconProps['color'];
   colorScheme?: ColorSchemeType;
   /**
    * The variant of the button style to use.

@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { IStackProps } from '../../primitives/Stack';
 import type { InterfaceBoxProps } from '../../primitives/Box/types';
 import type { IFormControlContext } from '../../composites';

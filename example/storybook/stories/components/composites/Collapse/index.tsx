@@ -1,15 +1,20 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../Wrapper';
 
-import Basic from './Basic';
-import Callback from './Callback';
-import Duration from './Duration';
+import { Example as Basic } from './Basic';
+import { Example as Callback } from './Callback';
+import { Example as Duration } from './Duration';
 
-storiesOf('Collapse', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic', () => <Basic />)
-  .add('Animation Duration', () => <Duration />)
-  .add('onAnimationStart and onAnimationEnd', () => <Callback />);
+export default {
+  title: 'Collapse',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Basic', render: () => <Basic /> };
+export const Story2 = {
+  name: 'Animation Duration',
+  render: () => <Duration />,
+};
+export const Story3 = {
+  name: 'onAnimationStart and onAnimationEnd',
+  render: () => <Callback />,
+};

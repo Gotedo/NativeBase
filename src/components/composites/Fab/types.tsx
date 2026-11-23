@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { CustomProps } from '../../../components/types/utils';
 import type { InterfaceButtonProps } from '../../primitives/Button/types';
 

@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { IBoxProps, InterfaceBoxProps } from '../../primitives/Box';
 import type { IIconButtonProps } from '../IconButton';
 import type { MutableRefObject } from 'react';
@@ -7,8 +8,7 @@ import type {
   ThemeComponentSizeType,
 } from '../../../components/types/utils';
 
-export interface InterfaceAlertDialogProps
-  extends InterfaceBoxProps<IAlertDialogProps> {
+export interface InterfaceAlertDialogProps extends InterfaceBoxProps<IAlertDialogProps> {
   /**
    * If true, the AlertDialog will open. Useful for controllable state behaviour
    */

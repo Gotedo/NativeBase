@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/test/**",
+    "src/**/__test__/**"
+  ],
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "lib/typescript",
+    "types": ["react", "node"]
+  }
+}

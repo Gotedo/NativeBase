@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert, Box, CloseIcon, IconButton, Text } from 'native-base';
-import { select } from '@storybook/addon-knobs';
+import { select } from '../../../../controls';
 
 export const Example = () => {
   return (
@@ -17,9 +17,12 @@ export const Example = () => {
           ['left-accent', 'solid', 'subtle', 'top-accent'],
           'subtle'
         )}
-        action={<IconButton icon={<CloseIcon size={3} />} />}
-        actionProps={{ alignSelf: 'center' }}
       >
+        <IconButton
+          accessibilityLabel="Close"
+          icon={<CloseIcon size={3} />}
+          alignSelf="center"
+        />
         <Alert.Icon />
         <Text>Error Alert</Text>
         <Text>Description </Text>

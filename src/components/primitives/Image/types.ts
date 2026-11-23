@@ -1,12 +1,15 @@
+import type { JSX } from 'react';
 import type { ImageProps, ImageSourcePropType } from 'react-native';
 import type { StyledProps } from '../../../theme/types';
 import type { ITextProps } from '../../primitives';
 import type { CustomProps, PlatformProps } from '../../types';
 
 export interface InterfaceImageProps
-  extends PlatformProps<IImageProps>,
+  extends
+    PlatformProps<IImageProps>,
     Omit<
       ImageProps,
+      | keyof StyledProps
       | 'borderRadius'
       | 'borderTopLeftRadius'
       | 'borderTopRightRadius'

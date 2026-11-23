@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { IHStackProps } from '../../primitives/Stack/HStack';
 import type { ITextProps, ILinkProps, IIconProps } from '../../primitives';
 import type { MutableRefObject } from 'react';

@@ -1,7 +1,7 @@
 import React, { memo, forwardRef, useRef } from 'react';
 import { usePropsResolution } from '../../../hooks/useThemeProps';
 import type { ITextProps } from './types';
-import { useHover } from '@react-native-aria/interactions';
+import { useHover } from '../../../aria/interactions';
 import { mergeRefs } from '../../../utils/mergeRefs';
 import { makeStyledComponent } from '../../../utils/styled';
 import { useResolvedFontFamily } from '../../../hooks/useResolvedFontFamily';
@@ -84,18 +84,18 @@ const Text = ({ children, ...props }: ITextProps, ref: any) => {
       numberOfLines || noOfLines
         ? numberOfLines || noOfLines
         : isTruncated
-        ? 1
-        : undefined,
+          ? 1
+          : undefined,
     ...resolvedFontFamily,
     bg: highlight ? 'warning.300' : resolvedProps.bg,
     textDecorationLine:
       underline && strikeThrough
         ? 'underline line-through'
         : underline
-        ? 'underline'
-        : strikeThrough
-        ? 'line-through'
-        : resolvedProps.textDecorationLine,
+          ? 'underline'
+          : strikeThrough
+            ? 'line-through'
+            : resolvedProps.textDecorationLine,
     fontSize: sub ? 10 : fontSize,
     ref: mergeRefs([ref, _ref]),
     ...(isHovered && _hover),

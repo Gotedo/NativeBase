@@ -1,12 +1,4 @@
-/* eslint-disable */
-//@ts-nocheck
-// This functions is taken from react native web
+import { prefix } from 'inline-style-prefixer';
 
-import createPrefixer from 'inline-style-prefixer/lib/createPrefixer';
-import staticData from './staticData';
-
-type StyleModifier = (style: Object) => Object;
-
-const prefixAll: StyleModifier = createPrefixer(staticData);
-
-export default prefixAll;
+// Use the public entry point and the package's maintained prefix data.
+export default prefix;

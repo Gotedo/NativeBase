@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { ColorSchemeType } from '../../../components/types';
 import type { InterfaceStackProps } from '../../primitives/Stack/Stack';
 

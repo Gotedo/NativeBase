@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import React, { memo, forwardRef } from 'react';
 import Box from '../../primitives/Box';
 import { HStack } from '../../primitives/Stack';
@@ -14,19 +15,13 @@ const FormControlErrorMessage = (
 ) => {
   const formControlContext = useFormControlContext();
   const combinedProps = combineContextAndProps(formControlContext, props);
-  const {
-    leftIcon,
-    rightIcon,
-    children,
-    _text,
-    _stack,
-    ...resolvedProps
-  } = usePropsResolution('FormControlErrorMessage', combinedProps, {
-    isDisabled: combinedProps.isDisabled,
-    isReadOnly: combinedProps.isReadOnly,
-    isInvalid: combinedProps.isInvalid,
-    // isRequired: combinedProps.isRequired,
-  });
+  const { leftIcon, rightIcon, children, _text, _stack, ...resolvedProps } =
+    usePropsResolution('FormControlErrorMessage', combinedProps, {
+      isDisabled: combinedProps.isDisabled,
+      isReadOnly: combinedProps.isReadOnly,
+      isInvalid: combinedProps.isInvalid,
+      // isRequired: combinedProps.isRequired,
+    });
   let { startIcon, endIcon } = resolvedProps;
 
   if (rightIcon) {

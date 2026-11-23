@@ -1,23 +1,27 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../Wrapper';
-import Usage from './Basic';
-import Playground from './Playground';
-import Multiple from './Multiple';
-import AccessingInternalState from './AccessingInternalState';
-import ExpandedStyle from './ExpandedStyle';
-import Toggle from './Toggle';
-import DefaultIndex from './DefaultIndex';
+import { Example as Usage } from './Basic';
+import { Example as Playground } from './Playground';
+import { Example as Multiple } from './Multiple';
+import { Example as AccessingInternalState } from './AccessingInternalState';
+import { Example as ExpandedStyle } from './ExpandedStyle';
+import { Example as Toggle } from './Toggle';
+import { Example as DefaultIndex } from './DefaultIndex';
 
-storiesOf('Accordion', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Playground', () => <Playground />)
-  .add('Usage', () => <Usage />)
-  .add('Multiple', () => <Multiple />)
-  .add('Default Index', () => <DefaultIndex />)
-  .add('Toggle', () => <Toggle />)
-  .add('Expanded Style', () => <ExpandedStyle />)
-
-  .add('Accessing Internal State', () => <AccessingInternalState />);
+export default {
+  title: 'Accordion',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Playground', render: () => <Playground /> };
+export const Story2 = { name: 'Usage', render: () => <Usage /> };
+export const Story3 = { name: 'Multiple', render: () => <Multiple /> };
+export const Story4 = { name: 'Default Index', render: () => <DefaultIndex /> };
+export const Story5 = { name: 'Toggle', render: () => <Toggle /> };
+export const Story6 = {
+  name: 'Expanded Style',
+  render: () => <ExpandedStyle />,
+};
+export const Story7 = {
+  name: 'Accessing Internal State',
+  render: () => <AccessingInternalState />,
+};

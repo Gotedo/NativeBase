@@ -4,10 +4,10 @@ import { Platform, Keyboard } from 'react-native';
 import { Actionsheet } from '../../composites/Actionsheet';
 import Box from '../Box';
 import { Input } from '../Input';
-import { useFocusRing } from '@react-native-aria/focus';
+import { useFocusRing } from '../../../aria/focus';
 import { useControllableState } from '../../../hooks';
 import { usePropsResolution } from '../../../hooks/useThemeProps';
-import { useHover } from '@react-native-aria/interactions';
+import { useHover } from '../../../aria/interactions';
 import { mergeRefs } from '../../../utils';
 import { useFormControl } from '../../composites/FormControl';
 import { ChevronDownIcon } from '../Icon/Icons';
@@ -51,6 +51,11 @@ const Select = (
 
   const { focusProps, isFocusVisible } = useFocusRing();
   const { hoverProps, isHovered } = useHover({ isDisabled }, _ref);
+  const {
+    onHoverIn: _onHoverIn,
+    onHoverOut: _onHoverOut,
+    ...domHoverProps
+  } = hoverProps;
 
   const {
     onValueChange,
@@ -237,7 +242,7 @@ const Select = (
         required={selectProps.required}
         disabled={isDisabled}
         {...focusProps}
-        {...hoverProps}
+        {...domHoverProps}
         ref={mergeRefs([ref, _ref])}
         //@ts-ignore
         onChange={(e) => {

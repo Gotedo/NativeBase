@@ -1,12 +1,14 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../Wrapper';
-import Example from './Example';
-import Indicator from './Indicator';
+import { Example as Example } from './Example';
+import { Example as Indicator } from './Indicator';
 
-storiesOf('Stat', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Default Stat', () => <Example />)
-  .add('Stat with Indicator', () => <Indicator />);
+export default {
+  title: 'Stat',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Default Stat', render: () => <Example /> };
+export const Story2 = {
+  name: 'Stat with Indicator',
+  render: () => <Indicator />,
+};

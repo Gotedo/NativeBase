@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormControl, Input, Stack } from 'native-base';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean } from '../../../../controls';
 
 export const Example = () => {
   return (

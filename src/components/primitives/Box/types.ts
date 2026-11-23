@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { ViewProps } from 'react-native';
 import type { StyledProps } from '../../../theme/types';
 import type {
@@ -19,7 +20,8 @@ export interface ILinearGradientProps {
 }
 
 export interface InterfaceBoxProps<T = null>
-  extends ViewProps,
+  extends
+    ViewProps,
     SafeAreaProps,
     PlatformProps<T extends null ? IBoxProps<any> : T>,
     Omit<StyledProps, 'bgColor' | 'background' | 'bg' | 'backgroundColor'> {

@@ -4,7 +4,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Platform } from 'react-native';
 
 export const Example = () => {
-  const myRef = React.useRef();
+  const myRef = React.useRef<React.ElementRef<
+    typeof import('react-native').View
+  > | null>(null);
   const [bg, setBg] = React.useState('#fa000050');
   React.useEffect(() => {
     const styleObj = {

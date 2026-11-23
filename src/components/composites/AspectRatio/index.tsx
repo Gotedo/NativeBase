@@ -31,7 +31,11 @@ const AspectView = forwardRef((props: any, ref?: any) => {
 });
 
 const AspectRatio = (props: IAspectRatioProps, ref?: any) => {
-  const { ratio, children = <></>, ...resolvedProps } = usePropsResolution(
+  const {
+    ratio,
+    children = <></>,
+    ...resolvedProps
+  } = usePropsResolution(
     'AspectRatio',
     props,
     {},
@@ -42,7 +46,7 @@ const AspectRatio = (props: IAspectRatioProps, ref?: any) => {
     children,
     {
       ...children?.props,
-      style: StyleSheet.absoluteFillObject,
+      style: StyleSheet.absoluteFill,
     },
     children?.props?.children
   );
@@ -59,10 +63,8 @@ const AspectRatio = (props: IAspectRatioProps, ref?: any) => {
       </AspectView>
     );
   } else {
-    computedStyle = StyleSheet.flatten([
-      { style: resolvedProps.style },
-      { aspectRatio: ratio },
-    ]);
+    computedStyle =
+      StyleSheet.flatten([resolvedProps.style, { aspectRatio: ratio }]) ?? {};
     return (
       <Box {...resolvedProps} style={computedStyle} ref={ref}>
         {newChildWithProps}

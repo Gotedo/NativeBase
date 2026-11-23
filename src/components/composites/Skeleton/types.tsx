@@ -1,11 +1,11 @@
+import type { JSX } from 'react';
 import type { MutableRefObject } from 'react';
 import type { InterfaceBoxProps } from '../../primitives/Box';
 import type { IStackProps } from '../../primitives/Stack/Stack';
 import type { CustomProps, ResponsiveValue } from '../../../components/types';
 import type { ISizes } from '../../../theme/base/sizes';
 import type { IColors } from '../../../theme/base/colors';
-export interface InterfaceSkeletonProps
-  extends InterfaceBoxProps<ISkeletonProps> {
+export interface InterfaceSkeletonProps extends InterfaceBoxProps<ISkeletonProps> {
   /**
    * The fadeIn duration in seconds
    */

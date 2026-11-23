@@ -1,10 +1,10 @@
+import type { JSX } from 'react';
 import type { InterfaceButtonProps } from '../../primitives/Button/types';
 import type { InterfaceBoxProps } from '../../primitives/Box';
 import type { MutableRefObject } from 'react';
 import type { CustomProps } from '../../../components/types';
 
-export interface InterfaceActionsheetProps
-  extends InterfaceBoxProps<IActionsheetProps> {
+export interface InterfaceActionsheetProps extends InterfaceBoxProps<IActionsheetProps> {
   /**
    * If true, the ActionSheet will open. Useful for controllable state behavior.
    */
@@ -33,8 +33,7 @@ export interface InterfaceActionsheetProps
   useRNModal?: boolean;
 }
 
-export interface IActionsheetContentProps
-  extends InterfaceBoxProps<IActionsheetContentProps> {
+export interface IActionsheetContentProps extends InterfaceBoxProps<IActionsheetContentProps> {
   /**
    * Props applied on area above actionsheet content.
    */
@@ -48,12 +47,12 @@ export interface IActionsheetContentProps
    */
   _dragIndicator?: InterfaceBoxProps<IActionsheetContentProps>;
 }
-export interface IActionsheetFooterProps
-  extends InterfaceBoxProps<IActionsheetFooterProps> {}
-export interface IActionsheetHeaderProps
-  extends InterfaceBoxProps<IActionsheetHeaderProps> {}
-export interface IActionsheetItemProps
-  extends Omit<InterfaceButtonProps, 'variant' | 'size' | 'colorScheme'> {}
+export interface IActionsheetFooterProps extends InterfaceBoxProps<IActionsheetFooterProps> {}
+export interface IActionsheetHeaderProps extends InterfaceBoxProps<IActionsheetHeaderProps> {}
+export interface IActionsheetItemProps extends Omit<
+  InterfaceButtonProps,
+  'variant' | 'size' | 'colorScheme'
+> {}
 
 export type IActionsheetComponentType = ((
   props: IActionsheetProps & { ref?: MutableRefObject<any> }

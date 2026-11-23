@@ -1,9 +1,9 @@
 import React from 'react';
-import { useButton } from '@react-native-aria/button';
+import { useButton } from '../../../aria/button';
 import { ComboBoxState, useComboBoxState } from '@react-stately/combobox';
-import { useComboBox } from '@react-native-aria/combobox';
-import { useListBox, useOption } from '@react-native-aria/listbox';
-import { ScrollView, findNodeHandle, Platform } from 'react-native';
+import { useComboBox } from '../../../aria/combobox';
+import { useListBox, useOption } from '../../../aria/listbox';
+import { ScrollView, Platform } from 'react-native';
 import { Item } from '@react-stately/collections';
 import Box from '../../primitives/Box';
 import { Pressable } from '../../primitives/Pressable';
@@ -57,8 +57,8 @@ export const Typeahead = React.forwardRef(
           const optionKey = getOptionKey
             ? getOptionKey(item)
             : item.id !== undefined
-            ? item.id
-            : optionLabel;
+              ? item.id
+              : optionLabel;
 
           return (
             <Item textValue={optionLabel} key={optionKey}>
@@ -80,12 +80,12 @@ export const Typeahead = React.forwardRef(
 const ComboBoxImplementation = React.forwardRef(
   (props: IComboBoxProps, ref?: any) => {
     const [layoutProps] = extractInObject(props, layoutPropsList);
-    let state = useComboBoxState(props);
+    let state = useComboBoxState({ ...props, menuTrigger: 'input' });
 
-    let triggerRef = React.useRef(null);
-    let inputRef = React.useRef(null);
-    let listBoxRef = React.useRef(null);
-    let popoverRef = React.useRef(null);
+    let triggerRef = React.useRef<any>(null);
+    let inputRef = React.useRef<any>(null);
+    let listBoxRef = React.useRef<any>(null);
+    let popoverRef = React.useRef<any>(null);
 
     let {
       buttonProps: triggerProps,
@@ -99,7 +99,6 @@ const ComboBoxImplementation = React.forwardRef(
         buttonRef: triggerRef,
         listBoxRef,
         popoverRef,
-        menuTrigger: 'input',
       },
       state
     );
@@ -162,7 +161,7 @@ function ListBoxPopup(props: IListBoxProps) {
   let { listBoxProps } = useListBox(
     {
       label,
-      autoFocus: state.focusStrategy,
+      autoFocus: state.focusStrategy ?? undefined,
       disallowEmptySelection: true,
     },
     state,
@@ -177,7 +176,10 @@ function ListBoxPopup(props: IListBoxProps) {
           keyboardShouldPersistTaps="handled"
           ref={(node) => {
             if (Platform.OS === 'web') {
-              listBoxRef.current = findNodeHandle(node);
+              const webNode = node as typeof node & {
+                getScrollableNode?: () => HTMLElement;
+              };
+              listBoxRef.current = webNode?.getScrollableNode?.() ?? node;
             } else {
               listBoxRef.current = node;
             }
@@ -195,7 +197,7 @@ function ListBoxPopup(props: IListBoxProps) {
 function Option({ item, state }: { item: any; state: ComboBoxState<any> }) {
   const searchItemStyle = useThemeProps('TypeAheadSearchItem', {});
 
-  let ref = React.useRef(null);
+  let ref = React.useRef<any>(null);
   let isDisabled = state.disabledKeys.has(item.key);
   let isSelected = state.selectionManager.isSelected(item.key);
   let isFocused = state.selectionManager.focusedKey === item.key;

@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
-import { useSliderThumb } from '@react-native-aria/slider';
+import { useSliderThumb } from '../../../aria/slider';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { useToken } from '../../../hooks';
 import { usePropsResolution } from '../../../hooks/useThemeProps';
@@ -8,7 +8,7 @@ import type { ISliderThumbProps } from './types';
 import Box from '../Box';
 import { SliderContext } from './Context';
 import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
-import { useHover } from '@react-native-aria/interactions';
+import { useHover } from '../../../aria/interactions';
 import { mergeRefs } from '../../../utils';
 import { extractInObject, stylingProps } from '../../../theme/tools/utils';
 import { Stack } from '../Stack';
@@ -30,39 +30,37 @@ function SliderThumb(props: ISliderThumbProps, ref: any) {
     state,
     trackLayout,
     orientation,
+    accessibilityLabel,
     colorScheme,
     thumbSize,
     isReadOnly,
     isDisabled,
     _interactionBox: interactionBoxContext,
   } = React.useContext(SliderContext);
-  const {
-    onFocus,
-    onBlur,
-    _stack,
-    _interactionBox,
-    ...resolvedProps
-  } = usePropsResolution(
-    'SliderThumb',
-    {
-      size: thumbSize,
-      _interactionBox: interactionBoxContext,
-      colorScheme,
-      ...props,
-    },
-    {
-      isDisabled,
-      isReadOnly,
-      isPressed,
-      isFocused,
-      isHovered,
-    }
-  );
+  const { onFocus, onBlur, _stack, _interactionBox, ...resolvedProps } =
+    usePropsResolution(
+      'SliderThumb',
+      {
+        size: thumbSize,
+        _interactionBox: interactionBoxContext,
+        colorScheme,
+        ...props,
+      },
+      {
+        isDisabled,
+        isReadOnly,
+        isPressed,
+        isFocused,
+        isHovered,
+      }
+    );
 
   const inputRef = React.useRef(null);
   const { thumbProps, inputProps } = useSliderThumb(
     {
-      index: 0,
+      'index': 0,
+      'aria-label': props.accessibilityLabel ?? accessibilityLabel ?? 'Slider',
+      'isDisabled': isDisabled || isReadOnly,
       trackLayout,
       inputRef,
       orientation,
@@ -103,13 +101,10 @@ function SliderThumb(props: ISliderThumbProps, ref: any) {
     ...stylingProps.outline,
   ]);
 
-  const [
-    accessibilityProps,
-    nonAccessibilityProps,
-  ] = extractInObject(nonLayoutProps, [
-    'accessibilityRole',
-    'accessibilityState',
-  ]);
+  const [accessibilityProps, nonAccessibilityProps] = extractInObject(
+    nonLayoutProps,
+    ['accessibilityRole', 'accessibilityState']
+  );
 
   //TODO: refactor for responsive prop
   if (useHasResponsiveProps(props)) {
@@ -119,6 +114,7 @@ function SliderThumb(props: ISliderThumbProps, ref: any) {
   return (
     <Box
       position="absolute"
+      {...(Platform.OS === 'web' ? {} : inputProps)}
       {...thumbProps}
       {...resolvedProps}
       {...accessibilityProps}

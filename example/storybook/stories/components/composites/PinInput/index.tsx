@@ -1,24 +1,26 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../Wrapper';
-import Usage from './Usage';
-import ManageFocus from './ManageFocus';
-import DefaultValue from './DefaultValue';
-import Size from './Size';
-import Playground from './Playground';
-import Variants from './Variants';
-import FormControlled from './FormControlled';
-import Placeholder from './Placeholder';
+import { Example as Usage } from './Usage';
+import { Example as ManageFocus } from './ManageFocus';
+import { Example as DefaultValue } from './DefaultValue';
+import { Example as Size } from './Size';
+import { Example as Playground } from './Playground';
+import { Example as Variants } from './Variants';
+import { Example as FormControlled } from './FormControlled';
+import { Example as Placeholder } from './Placeholder';
 
-storiesOf('PinInput', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Playground', () => <Playground />)
-  .add('Usage', () => <Usage />)
-  .add('Size', () => <Size />)
-  .add('DefaultValue', () => <DefaultValue />)
-  .add('Placeholder', () => <Placeholder />)
-  .add('ManageFocus', () => <ManageFocus />)
-  .add('Variants', () => <Variants />)
-  .add('FormControlled', () => <FormControlled />);
+export default {
+  title: 'PinInput',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Playground', render: () => <Playground /> };
+export const Story2 = { name: 'Usage', render: () => <Usage /> };
+export const Story3 = { name: 'Size', render: () => <Size /> };
+export const Story4 = { name: 'DefaultValue', render: () => <DefaultValue /> };
+export const Story5 = { name: 'Placeholder', render: () => <Placeholder /> };
+export const Story6 = { name: 'ManageFocus', render: () => <ManageFocus /> };
+export const Story7 = { name: 'Variants', render: () => <Variants /> };
+export const Story8 = {
+  name: 'FormControlled',
+  render: () => <FormControlled />,
+};

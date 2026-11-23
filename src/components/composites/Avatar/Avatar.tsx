@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import React, { memo, forwardRef } from 'react';
 import { Box, Image } from '../../primitives';
 import { usePropsResolution } from '../../../hooks/useThemeProps';
@@ -25,8 +26,8 @@ const Avatar = ({ children, ...props }: IAvatarProps, ref: any) => {
         size: child?.props?.size
           ? child?.props?.size
           : _badgeSize
-          ? _badgeSize[0]
-          : undefined,
+            ? _badgeSize[0]
+            : undefined,
       });
     } else {
       remainingChildren.push(child);

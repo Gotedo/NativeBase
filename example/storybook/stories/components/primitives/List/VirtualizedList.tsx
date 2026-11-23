@@ -2,14 +2,14 @@ import React from 'react';
 import { VirtualizedList } from 'react-native';
 import { List } from 'native-base';
 
-const DATA = [];
+const DATA: unknown[] = [];
 
-const getItem = (_data, index) => ({
+const getItem = (_data: unknown, index: number) => ({
   id: Math.random().toString(12).substring(0),
   title: `Item ${index + 1}`,
 });
 
-const getItemCount = (_data) => 500;
+const getItemCount = (_data: unknown) => 500;
 
 const Item = ({ title }: { title: String }) => (
   <List.Item

@@ -7,7 +7,7 @@ import {
 import { theme as defaultTheme, ITheme } from './../theme';
 import type { IColorModeProviderProps } from './color-mode';
 import HybridProvider from './hybrid-overlay/HybridProvider';
-import { OverlayProvider } from '@react-native-aria/overlays';
+import { OverlayProvider } from '../aria/overlays';
 import { ToastProvider, ToastRef } from '../components/composites/Toast';
 import {
   defaultConfig,
@@ -25,15 +25,14 @@ import { ResponsiveQueryProvider } from '../utils/useResponsiveQuery';
 // For SSR to work, we need to pass initial insets as 0 values on web.
 
 // https://github.com/th3rdwave/react-native-safe-area-context/issues/132
-const defaultInitialWindowMetricsBasedOnPlatform: Metrics | null = Platform.select(
-  {
+const defaultInitialWindowMetricsBasedOnPlatform: Metrics | null =
+  Platform.select({
     web: {
       frame: { x: 0, y: 0, width: 0, height: 0 },
       insets: { top: 0, left: 0, right: 0, bottom: 0 },
     },
     default: defaultInitialWindowMetrics,
-  }
-);
+  });
 
 export interface NativeBaseProviderProps {
   theme?: ITheme;

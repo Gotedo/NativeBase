@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { InterfaceBoxProps } from '../../primitives/Box';
 import type { IIconButtonProps } from '../../composites/IconButton';
 import type { MutableRefObject } from 'react';

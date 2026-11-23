@@ -1,6 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../Wrapper';
 import { Example as Basic } from './Basic';
 import { Example as Color } from './Color';
@@ -8,11 +6,12 @@ import { Example as Composition } from './Composition';
 import { Example as IsLoaded } from './isLoaded';
 import { Example as FadeDuration } from './FadeDuration';
 
-storiesOf('Skeleton', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic', () => <Basic />)
-  .add('Color', () => <Color />)
-  .add('Composition', () => <Composition />)
-  .add('FadeDuration', () => <FadeDuration />)
-  .add('isLoaded', () => <IsLoaded />);
+export default {
+  title: 'Skeleton',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Basic', render: () => <Basic /> };
+export const Story2 = { name: 'Color', render: () => <Color /> };
+export const Story3 = { name: 'Composition', render: () => <Composition /> };
+export const Story4 = { name: 'FadeDuration', render: () => <FadeDuration /> };
+export const Story5 = { name: 'isLoaded', render: () => <IsLoaded /> };

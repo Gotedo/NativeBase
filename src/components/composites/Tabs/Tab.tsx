@@ -4,8 +4,8 @@ import Box from '../../primitives/Box';
 import { TabsContext } from './Context';
 import type { ITabProps, ITabsContextProps } from './types';
 import { omitUndefined } from '../../../theme/tools/utils';
-import { useTab } from '@react-native-aria/tabs';
-import { useHover } from '@react-native-aria/interactions';
+import { useTab } from '../../../aria/tabs';
+import { useHover } from '../../../aria/interactions';
 import { mergeRefs } from '../../../utils';
 import merge from 'lodash.merge';
 import { themeTools } from '../../../theme';
@@ -51,25 +51,25 @@ const Tab = (
   const tabStyle = isSelected ? activeTabStyle : inactiveTabStyle;
   const { _hover, ...remainingTabStyle } = tabStyle;
   const mergedProps = merge(remainingTabStyle, newProps);
-  const [
-    marginalProps,
-    remainingProps,
-  ] = themeTools.extractInObject(mergedProps, [
-    'margin',
-    'm',
-    'marginTop',
-    'mt',
-    'marginRight',
-    'mr',
-    'marginBottom',
-    'mb',
-    'marginLeft',
-    'ml',
-    'marginX',
-    'mx',
-    'marginY',
-    'my',
-  ]);
+  const [marginalProps, remainingProps] = themeTools.extractInObject(
+    mergedProps,
+    [
+      'margin',
+      'm',
+      'marginTop',
+      'mt',
+      'marginRight',
+      'mr',
+      'marginBottom',
+      'mb',
+      'marginLeft',
+      'ml',
+      'marginX',
+      'mx',
+      'marginY',
+      'my',
+    ]
+  );
   //TODO: refactor for responsive prop
   if (useHasResponsiveProps(props)) {
     return null;

@@ -3,7 +3,7 @@ import { Button, useToast, Stack } from 'native-base';
 
 export const Example = () => {
   const toast = useToast();
-  const toastIdRef = React.useRef();
+  const toastIdRef = React.useRef<string | number | undefined>(undefined);
 
   function close() {
     if (toastIdRef.current) {

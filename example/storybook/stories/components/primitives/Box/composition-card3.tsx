@@ -25,15 +25,14 @@ export const Example = () => {
         w="100%"
         rounded="25"
         source={{
-          uri:
-            'https://image.freepik.com/free-photo/pathway-middle-green-leafed-trees-with-sun-shining-through-branches_181624-4539.jpg',
+          uri: 'https://image.freepik.com/free-photo/pathway-middle-green-leafed-trees-with-sun-shining-through-branches_181624-4539.jpg',
         }}
         alt="NativeBase Card"
       />
 
       <Center position="absolute" height="100%" width="100%">
         <Icon
-          as={<AntDesign name="play" />}
+          as={<AntDesign name="play-circle" />}
           color="gray.200"
           size={12}
           opacity={0.8}

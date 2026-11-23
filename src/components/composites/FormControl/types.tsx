@@ -1,10 +1,10 @@
+import type { JSX } from 'react';
 import type { ITextProps } from '../../primitives';
 import type { CustomProps } from '../../../components/types/utils';
 import type { IBoxProps, IStackProps } from '../../primitives';
 import type { InterfaceBoxProps } from '../../../components/primitives/Box';
 
-export interface InterfaceFormControlProps
-  extends InterfaceBoxProps<IFormControlProps> {
+export interface InterfaceFormControlProps extends InterfaceBoxProps<IFormControlProps> {
   /**
    * If provided, this prop is passed to its children.
    */

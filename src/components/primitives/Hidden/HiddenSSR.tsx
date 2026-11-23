@@ -61,7 +61,10 @@ export const HiddenSSR = React.memo(({ children, ...props }: IHiddenProps) => {
     }
   }
 
-  return React.cloneElement(children, {
-    display: display,
-  });
+  return React.cloneElement(
+    children as React.ReactElement<{ display?: unknown }>,
+    {
+      display: display,
+    }
+  );
 });

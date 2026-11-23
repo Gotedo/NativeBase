@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { ITextProps } from '../../primitives/Text/types';
 import type { IIconProps } from '../../primitives/Icon';
 import type { CustomProps, VariantType } from '../../types';

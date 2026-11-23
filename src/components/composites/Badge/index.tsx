@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import React, { memo, forwardRef } from 'react';
 import HStack from '../../primitives/Stack/HStack';
 import Box from '../../primitives/Box';

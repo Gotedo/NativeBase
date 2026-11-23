@@ -7,13 +7,13 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from 'native-base';
-import { boolean, number, text } from '@storybook/addon-knobs';
+import { boolean, number, text } from '../../../../controls';
 
 export const Example = () => {
   return (
     <Stack w="90%">
       <NumberInput
-        defaultValue={text('defaultValue', '20')}
+        defaultValue={number('defaultValue', 20)}
         min={number('min', 5)}
         max={number('max', 40)}
         step={number('step', 3)}

@@ -1,6 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../Wrapper';
 import { Example as UnorderedList } from './UnorderedList';
 import { Example as StylingList } from './StylingList';
@@ -10,13 +8,26 @@ import { Example as ListWithIcon } from './ListWithIcon';
 import { Example as PressableList } from './PressableList';
 import { Example as VirtualizedList } from './VirtualizedList';
 
-storiesOf('List', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic', () => <Basic />)
-  .add('OrderedList', () => <OrderedList />)
-  .add('UnorderedList', () => <UnorderedList />)
-  .add('StylingList', () => <StylingList />)
-  .add('Pressable List Items', () => <PressableList />)
-  .add('List with Icon', () => <ListWithIcon />)
-  .add('VirtualizedList ', () => <VirtualizedList />);
+export default {
+  title: 'List',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Basic', render: () => <Basic /> };
+export const Story2 = { name: 'OrderedList', render: () => <OrderedList /> };
+export const Story3 = {
+  name: 'UnorderedList',
+  render: () => <UnorderedList />,
+};
+export const Story4 = { name: 'StylingList', render: () => <StylingList /> };
+export const Story5 = {
+  name: 'Pressable List Items',
+  render: () => <PressableList />,
+};
+export const Story6 = {
+  name: 'List with Icon',
+  render: () => <ListWithIcon />,
+};
+export const Story7 = {
+  name: 'VirtualizedList ',
+  render: () => <VirtualizedList />,
+};

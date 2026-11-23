@@ -1,19 +1,49 @@
 import React from 'react';
-import { useId } from '@react-native-aria/utils';
+import { useId } from '../../../aria/utils';
 import omit from 'lodash.omit';
 import type { IFormControlProps } from './types';
 import { ariaAttr } from '../../../utils';
 import { ResponsiveQueryContext } from '../../../utils/useResponsiveQuery/ResponsiveQueryProvider';
 import uniqueId from 'lodash.uniqueid';
 
-export type IFormControlContext = Omit<
-  ReturnType<typeof useFormControlProvider>,
-  'htmlProps'
->;
+export interface IFormControlContext {
+  isRequired: boolean;
+  isInvalid: boolean;
+  isReadOnly: boolean;
+  isDisabled: boolean;
+  hasFeedbackText: boolean;
+  setHasFeedbackText: React.Dispatch<React.SetStateAction<boolean>>;
+  hasHelpText: boolean;
+  setHasHelpText: React.Dispatch<React.SetStateAction<boolean>>;
+  nativeID: string;
+  labelId: string;
+  feedbackId: string;
+  helpTextId: string;
+}
+type FormControlProviderValue = IFormControlContext & {
+  htmlProps: Omit<
+    IFormControlProps,
+    'nativeID' | 'isRequired' | 'isInvalid' | 'isDisabled' | 'isReadOnly'
+  >;
+};
+type FormControlInputProps = Omit<
+  IFormControlProps,
+  'isInvalid' | 'isDisabled' | 'isReadOnly' | 'isRequired'
+> & {
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
+  accessibilityInvalid?: boolean;
+  accessibilityRequired?: boolean;
+  accessibilityReadOnly?: boolean;
+  accessibilityDescribedBy?: string;
+};
 
 export const FormControlContext = React.createContext({});
 
-export function useFormControlProvider(props: IFormControlProps) {
+export function useFormControlProvider(
+  props: IFormControlProps
+): FormControlProviderValue {
   const {
     nativeID: idProp,
     isRequired,
@@ -80,7 +110,9 @@ export function useFormControlProvider(props: IFormControlProps) {
  * It provides a convenient way to control a form fields, validation
  * and helper text.
  */
-export function useFormControl(props: IFormControlProps) {
+export function useFormControl(
+  props: IFormControlProps
+): FormControlInputProps {
   const field = useFormControlContext();
   const describedBy: any[] = [];
 
@@ -116,7 +148,5 @@ export function useFormControl(props: IFormControlProps) {
 }
 
 export const useFormControlContext = () => {
-  return (React.useContext(
-    FormControlContext
-  ) as unknown) as IFormControlContext;
+  return React.useContext(FormControlContext) as unknown as IFormControlContext;
 };

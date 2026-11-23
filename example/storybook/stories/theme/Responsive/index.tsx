@@ -1,6 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../components/Wrapper';
 import { Example as Basic } from './Basic';
 import { Example as FontSize } from './FontSize';
@@ -8,11 +6,12 @@ import { Example as Direction } from './Direction';
 import { Example as More } from './More';
 import { Example as Demo } from './Demo';
 
-storiesOf('Responsive', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic', () => <Basic />)
-  .add('FontSize', () => <FontSize />)
-  .add('More', () => <More />)
-  .add('Direction', () => <Direction />)
-  .add('Demo', () => <Demo />);
+export default {
+  title: 'Responsive',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Basic', render: () => <Basic /> };
+export const Story2 = { name: 'FontSize', render: () => <FontSize /> };
+export const Story3 = { name: 'More', render: () => <More /> };
+export const Story4 = { name: 'Direction', render: () => <Direction /> };
+export const Story5 = { name: 'Demo', render: () => <Demo /> };

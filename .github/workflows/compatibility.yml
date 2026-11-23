@@ -1,0 +1,48 @@
+name: React Native compatibility
+on:
+  push:
+  pull_request:
+jobs:
+  library:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run typecheck
+      - run: npm test -- --runInBand
+      - run: npm run build
+      - run: npm pack --dry-run
+  examples:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        example: [RNBareExample, example, expo-example, next-example]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            ${{ matrix.example }}/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - run: npm ci --ignore-scripts
+        working-directory: ${{ matrix.example }}
+      - run: npm run typecheck
+        working-directory: ${{ matrix.example }}
+      - if: matrix.example == 'next-example'
+        run: npm run build
+        working-directory: next-example
+      - if: matrix.example == 'example' || matrix.example == 'expo-example'
+        run: npx expo export --platform web
+        working-directory: ${{ matrix.example }}
+      - if: matrix.example == 'example'
+        run: npx playwright install --with-deps chromium
+      - if: matrix.example == 'example'
+        run: npm run test:storybook:web

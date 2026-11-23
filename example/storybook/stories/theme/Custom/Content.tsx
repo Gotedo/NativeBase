@@ -38,7 +38,7 @@ export const Content = () => {
           </Heading>
           <Box
             py={2}
-            border={1}
+            borderWidth={1}
             borderRadius="md"
             _light={{ borderColor: 'gray.800' }}
             _dark={{ borderColor: 'gray.50' }}
@@ -57,8 +57,7 @@ export const Content = () => {
                   mr={4}
                   size="lg"
                   source={{
-                    uri:
-                      'https://pbs.twimg.com/profile_images/1309797238651060226/18cm6VhQ_400x400.jpg',
+                    uri: 'https://pbs.twimg.com/profile_images/1309797238651060226/18cm6VhQ_400x400.jpg',
                   }}
                 >
                   Ankur
@@ -76,7 +75,7 @@ export const Content = () => {
           </Box>
           <Box
             py={2}
-            border={1}
+            borderWidth={1}
             borderRadius="md"
             _light={{ borderColor: 'gray.800' }}
             _dark={{ borderColor: 'gray.50' }}
@@ -95,8 +94,7 @@ export const Content = () => {
                   mr={4}
                   size="lg"
                   source={{
-                    uri:
-                      'https://pbs.twimg.com/profile_images/1320985200663293952/lE_Kg6vr_400x400.jpg',
+                    uri: 'https://pbs.twimg.com/profile_images/1320985200663293952/lE_Kg6vr_400x400.jpg',
                   }}
                 >
                   Rehman
@@ -114,7 +112,7 @@ export const Content = () => {
           </Box>
           <Box
             py={2}
-            border={1}
+            borderWidth={1}
             borderRadius="md"
             _light={{ borderColor: 'gray.800' }}
             _dark={{ borderColor: 'gray.50' }}
@@ -133,8 +131,7 @@ export const Content = () => {
                   mr={4}
                   size="lg"
                   source={{
-                    uri:
-                      'https://pbs.twimg.com/profile_images/1352844693151731713/HKO7cnlW_400x400.jpg',
+                    uri: 'https://pbs.twimg.com/profile_images/1352844693151731713/HKO7cnlW_400x400.jpg',
                   }}
                 >
                   Rohit

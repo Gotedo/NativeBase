@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import React, { memo, forwardRef } from 'react';
 import Box from '../../primitives/Box';
 import { usePropsResolution } from '../../../hooks/useThemeProps';

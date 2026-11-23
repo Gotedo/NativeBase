@@ -16,7 +16,7 @@ export const Example = () => {
             aliquip ex ea commodo consequat.
           </Accordion.Details>
         </Accordion.Item>
-        <Accordion.Item id={9} isDisabled>
+        <Accordion.Item index={9} isDisabled>
           <Accordion.Summary>
             I'm Disabled 😢
             <Accordion.Icon />

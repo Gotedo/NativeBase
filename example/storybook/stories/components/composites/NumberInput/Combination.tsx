@@ -12,11 +12,7 @@ export const Example = () => {
   const [value, setValue] = React.useState(20);
   return (
     <Stack w="90%">
-      <NumberInput
-        value={`${value}`}
-        step={5}
-        onChange={(v: any) => setValue(v)}
-      >
+      <NumberInput value={value} step={5} onChange={(v: any) => setValue(v)}>
         <NumberInputField />
         <NumberInputStepper>
           <NumberIncrementStepper />

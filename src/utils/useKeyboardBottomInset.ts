@@ -8,6 +8,7 @@ export const useKeyboardBottomInset = () => {
   React.useEffect(() => {
     function onKeyboardChange(e: KeyboardEvent) {
       if (
+        'startCoordinates' in e &&
         e.startCoordinates &&
         e.endCoordinates.screenY <= e.startCoordinates.screenY
       )

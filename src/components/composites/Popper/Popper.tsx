@@ -1,5 +1,5 @@
 import React from 'react';
-import { useOverlayPosition } from '@react-native-aria/overlays';
+import { useOverlayPosition } from '../../../aria/overlays';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import type {
   IPopperProps,
@@ -25,9 +25,8 @@ type PopperContext = IPopperProps & {
   setOverlayRef?: (overlayRef: any) => void;
 };
 
-const [PopperProvider, usePopperContext] = createContext<PopperContext>(
-  'PopperContext'
-);
+const [PopperProvider, usePopperContext] =
+  createContext<PopperContext>('PopperContext');
 
 const Popper = (
   props: IPopperProps & {
@@ -54,23 +53,19 @@ const PopperContent = React.forwardRef(
     const overlayRef = React.useRef(null);
 
     // const { top } = useSafeAreaInsets();
-    const {
-      overlayProps,
-      rendered,
-      arrowProps,
-      placement,
-    } = useOverlayPosition({
-      targetRef: triggerRef,
-      overlayRef,
-      shouldFlip: shouldFlip,
-      crossOffset: crossOffset,
-      isOpen: rest.isOpen,
-      offset: offset,
-      placement: placementProp as any,
-      containerPadding: 0,
-      onClose: onClose,
-      shouldOverlapWithTrigger,
-    });
+    const { overlayProps, rendered, arrowProps, placement } =
+      useOverlayPosition({
+        targetRef: triggerRef,
+        overlayRef,
+        shouldFlip: shouldFlip,
+        crossOffset: crossOffset,
+        isOpen: rest.isOpen,
+        offset: offset,
+        placement: placementProp as any,
+        containerPadding: 0,
+        onClose: onClose,
+        shouldOverlapWithTrigger,
+      });
 
     const restElements: React.ReactNode[] = [];
     let arrowElement: React.ReactElement | null = null;

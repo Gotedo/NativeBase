@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox, Box } from 'native-base';
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { boolean, select, text } from '../../../../controls';
 
 export const Example = () => {
   const [toggleCheckBox, setToggleCheckBox] = React.useState(true);

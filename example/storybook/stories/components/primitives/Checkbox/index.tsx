@@ -1,6 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../Wrapper';
 import { Example as Playground } from './playground';
 import { Example as Disabled } from './disabled';
@@ -15,18 +13,31 @@ import { Example as CheckboxGroup } from './checkboxGroup';
 import { Example as ControlledCheckbox } from './controlledCheckbox';
 import { Example as UnControlledCheckbox } from './uncontrolledCheckbox';
 
-storiesOf('Checkbox', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic', () => <Basic />)
-  .add('Playground', () => <Playground />)
-  .add('Controlled checkbox', () => <ControlledCheckbox />)
-  .add('Uncontrolled checkbox', () => <UnControlledCheckbox />)
-  .add('Disabled', () => <Disabled />)
-  .add('Invalid', () => <Invalid />)
-  .add('Size', () => <Size />)
-  .add('Custom Color', () => <CustomColor />)
-  .add('Custom Icon', () => <CustomIcon />)
-  .add('Checkbox Group', () => <CheckboxGroup />)
-  .add('Form Controlled', () => <FormControlled />)
-  .add('With Ref', () => <WithRef />);
+export default {
+  title: 'Checkbox',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Basic', render: () => <Basic /> };
+export const Story2 = { name: 'Playground', render: () => <Playground /> };
+export const Story3 = {
+  name: 'Controlled checkbox',
+  render: () => <ControlledCheckbox />,
+};
+export const Story4 = {
+  name: 'Uncontrolled checkbox',
+  render: () => <UnControlledCheckbox />,
+};
+export const Story5 = { name: 'Disabled', render: () => <Disabled /> };
+export const Story6 = { name: 'Invalid', render: () => <Invalid /> };
+export const Story7 = { name: 'Size', render: () => <Size /> };
+export const Story8 = { name: 'Custom Color', render: () => <CustomColor /> };
+export const Story9 = { name: 'Custom Icon', render: () => <CustomIcon /> };
+export const Story10 = {
+  name: 'Checkbox Group',
+  render: () => <CheckboxGroup />,
+};
+export const Story11 = {
+  name: 'Form Controlled',
+  render: () => <FormControlled />,
+};
+export const Story12 = { name: 'With Ref', render: () => <WithRef /> };

@@ -9,7 +9,8 @@ import type { InterfaceBoxProps } from '../Box';
 import type { ColorSchemeType } from '../../../components/types';
 
 export interface InterfaceSwitchProps
-  extends Omit<SwitchProps, 'tintColor'>,
+  extends
+    Omit<SwitchProps, 'tintColor' | keyof InterfaceBoxProps>,
     InterfaceBoxProps<ISwitchProps> {
   /**
    * The size (width and height) of the switch.

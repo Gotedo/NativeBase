@@ -1,6 +1,6 @@
 import React from 'react';
 import { Heading, Container, Text } from 'native-base';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, text } from '../../../../controls';
 
 export const Example = () => {
   return (

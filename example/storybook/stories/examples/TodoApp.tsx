@@ -40,7 +40,7 @@ export const Example = () => {
     if (title === '') {
       toast.show({
         title: 'Please Enter Text',
-        status: 'warning',
+        bg: 'warning.500',
       });
       return;
     }

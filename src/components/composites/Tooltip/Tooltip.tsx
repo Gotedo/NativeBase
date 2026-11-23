@@ -1,4 +1,4 @@
-import { OverlayContainer } from '@react-native-aria/overlays';
+import { OverlayContainer } from '../../../aria/overlays';
 import React from 'react';
 import { useControllableState, useKeyboardDismissable } from '../../../hooks';
 import { Popper } from '../Popper';
@@ -8,7 +8,7 @@ import { Platform, StyleSheet } from 'react-native';
 import { usePropsResolution } from '../../../hooks';
 import Box from '../../primitives/Box';
 import type { ITooltipProps } from './types';
-import { useId } from '@react-native-aria/utils';
+import { useId } from '../../../aria/utils';
 import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
 import uniqueId from 'lodash.uniqueid';
 import { ResponsiveQueryContext } from '../../../utils/useResponsiveQuery/ResponsiveQueryProvider';
@@ -50,8 +50,8 @@ export const Tooltip = ({
 
   const targetRef = React.useRef(null);
 
-  const enterTimeout = React.useRef<any>();
-  const exitTimeout = React.useRef<any>();
+  const enterTimeout = React.useRef<any>(undefined);
+  const exitTimeout = React.useRef<any>(undefined);
   // const tooltipID = '';
   // const tooltipID = useId();
 
@@ -117,7 +117,7 @@ export const Tooltip = ({
       newChildren.props.onMouseLeave,
       closeWithDelay
     ),
-    'ref': mergeRefs([newChildren.ref, targetRef]),
+    'ref': mergeRefs([newChildren.props.ref, targetRef]),
 
     'aria-describedby': isOpen ? tooltipID : undefined,
   });

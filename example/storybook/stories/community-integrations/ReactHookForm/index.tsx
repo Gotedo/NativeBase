@@ -1,6 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../components/Wrapper';
 import { Example as RadioAndCheckbox } from './RadioAndCheckbox';
 import { Example as PinInput } from './PinInput';
@@ -12,15 +10,19 @@ import { Example as Slider } from './Slider';
 import { Example as DemoForm } from './DemoForm';
 import { Example as Usage } from './Usage';
 
-storiesOf('React Hook Form', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Usage', () => <Usage />)
-  .add('DemoForm', () => <DemoForm />) // Todo: Remove to somewhere else
-  .add('Radio And Checkbox', () => <RadioAndCheckbox />)
-  .add('Select', () => <Select />)
-  .add('Slider', () => <Slider />)
-  .add('Textarea', () => <Textarea />)
-  .add('Switch', () => <Switch />)
-  .add('NumberInput', () => <NumberInput />)
-  .add('PinInput', () => <PinInput />);
+export default {
+  title: 'React Hook Form',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Usage', render: () => <Usage /> };
+export const Story2 = { name: 'DemoForm', render: () => <DemoForm /> };
+export const Story3 = {
+  name: 'Radio And Checkbox',
+  render: () => <RadioAndCheckbox />,
+};
+export const Story4 = { name: 'Select', render: () => <Select /> };
+export const Story5 = { name: 'Slider', render: () => <Slider /> };
+export const Story6 = { name: 'Textarea', render: () => <Textarea /> };
+export const Story7 = { name: 'Switch', render: () => <Switch /> };
+export const Story8 = { name: 'NumberInput', render: () => <NumberInput /> };
+export const Story9 = { name: 'PinInput', render: () => <PinInput /> };

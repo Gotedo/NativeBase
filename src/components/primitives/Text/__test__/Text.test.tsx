@@ -1,4 +1,3 @@
-/** * @jest-environment jsdom */
 //@ts-nocheck
 import React from 'react';
 import { render } from '@testing-library/react-native';
@@ -201,18 +200,17 @@ describe('Text component', () => {
     );
   });
 
-  it('tests letterSpacing in em from token in text ', () => {
+  it('resolves web letterSpacing to an em value', () => {
     Platform.OS = 'web';
     try {
-      render(
+      const { getByTestId } = render(
         <Provider>
           <Text letterSpacing="2xl" testID="test">
-            This is a text
+            Text
           </Text>
         </Provider>
       );
-    } catch (e) {
-      expect(e.message).toContain(`"letterSpacing": "0.1em"`);
+      expect(getByTestId('test').props.style.letterSpacing).toBe('0.1em');
     } finally {
       Platform.OS = 'ios';
     }

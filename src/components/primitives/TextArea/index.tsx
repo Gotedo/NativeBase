@@ -3,11 +3,12 @@ import { Input } from '../Input';
 import type { InterfaceInputProps } from '../Input/types';
 import { usePropsResolution } from '../../../hooks/useThemeProps';
 import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
-import { useHover } from '@react-native-aria/interactions';
+import { useHover } from '../../../aria/interactions';
 import { mergeRefs } from '../../../utils';
 import type { PlatformProps } from '../../../components/types';
 export interface ITextAreaProps
-  extends Omit<
+  extends
+    Omit<
       InterfaceInputProps,
       '_web' | '_android' | '_ios' | '_light' | '_dark' | '_important'
     >,

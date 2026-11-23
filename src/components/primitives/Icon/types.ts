@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { PlatformProps } from '../../types';
 import type { StyledProps } from '../../../theme/types';
 import type { ResponsiveValue } from '../../types/responsiveValue';
@@ -7,9 +8,10 @@ import type { IColors } from '../../../theme/base/colors';
 import type { CustomProps, ThemeComponentSizeType } from '../../types/utils';
 
 export interface InterfaceIconProps
-  extends Omit<
+  extends
+    Omit<
       SvgProps,
-      'opacity' | 'stroke' | 'height' | 'width' | 'transform' | 'color'
+      keyof StyledProps | 'stroke' | 'height' | 'width' | 'transform' | 'color'
     >,
     StyledProps,
     PlatformProps<IIconProps> {

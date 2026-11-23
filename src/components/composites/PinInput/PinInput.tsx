@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import React from 'react';
 import { HStack } from '../../primitives/Stack';
 import { useThemeProps } from '../../../hooks';
@@ -18,14 +19,8 @@ const PinInput = ({ children, ...props }: IPinInputProps, ref?: any) => {
     'pl',
     'pr',
   ]);
-  const {
-    manageFocus,
-    defaultValue,
-    value,
-    space,
-    onChange,
-    ...newProps
-  } = useThemeProps('PinInput', remProps);
+  const { manageFocus, defaultValue, value, space, onChange, ...newProps } =
+    useThemeProps('PinInput', remProps);
   const formControlContext = useFormControlContext();
 
   const RefList: Array<any> = [];

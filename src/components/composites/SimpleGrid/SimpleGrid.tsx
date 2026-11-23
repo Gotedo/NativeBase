@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import React from 'react';
 import { Box, HStack, VStack } from '../../primitives';
 import type { ISimpleGridProps } from './types';

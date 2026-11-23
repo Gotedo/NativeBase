@@ -1,5 +1,6 @@
 import React from 'react';
-import { Tabs, Box } from 'native-base';
+import { Box } from 'native-base';
+import { Tabs } from '../../../../../../src/components/composites/Tabs';
 
 export const Example = () => {
   return (

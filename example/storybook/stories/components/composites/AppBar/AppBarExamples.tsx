@@ -1,13 +1,7 @@
+import { AppBar } from '../../../../../../src/components/composites/AppBar';
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import {
-  AppBar,
-  IconButton,
-  Icon,
-  Text,
-  HStack,
-  VStack,
-  Button,
-} from 'native-base';
+import { IconButton, Icon, Text, HStack, VStack, Button } from 'native-base';
 import { TouchableOpacity } from 'react-native';
 
 export default function Examples() {
@@ -54,12 +48,7 @@ function IOSLike() {
       <AppBar.Left>
         <TouchableOpacity>
           <HStack alignItems="center" space={1}>
-            <Icon
-              name="angle-left"
-              type="FontAwesome"
-              size={10}
-              color="blue.500"
-            />
+            <Icon name="angle-left" as={Ionicons} size={10} color="blue.500" />
             <Text fontWeight={'bold'} color="blue.500" fontSize="md">
               Back
             </Text>
@@ -88,9 +77,7 @@ function Customized() {
   return (
     <AppBar colorScheme="dark" shadow={1}>
       <AppBar.Left>
-        <IconButton
-          icon={<Icon name="angle-left" type="FontAwesome" size={10} />}
-        />
+        <IconButton icon={<Icon name="angle-left" as={Ionicons} size={10} />} />
       </AppBar.Left>
       <AppBar.Content>
         <Text isTruncated fontWeight="bold" fontSize={22}>
@@ -99,7 +86,7 @@ function Customized() {
       </AppBar.Content>
       <AppBar.Right>
         <IconButton
-          icon={<Icon name="folder-music" type="Entypo" size={8} />}
+          icon={<Icon name="folder-music" as={Ionicons} size={8} />}
         />
       </AppBar.Right>
     </AppBar>
@@ -118,13 +105,11 @@ function CustomizedWithBorder() {
         </Text>
       </AppBar.Content>
       <AppBar.Right space={4}>
-        <IconButton icon={<Icon name="search1" type="AntDesign" size={6} />} />
+        <IconButton icon={<Icon name="search1" as={Ionicons} size={6} />} />
         <IconButton
-          icon={<Icon name="shopping-bag" type="Entypo" size={6} />}
+          icon={<Icon name="shopping-bag" as={Ionicons} size={6} />}
         />
-        <IconButton
-          icon={<Icon name="bookmark-o" type="FontAwesome" size={6} />}
-        />
+        <IconButton icon={<Icon name="bookmark-o" as={Ionicons} size={6} />} />
       </AppBar.Right>
     </AppBar>
   );
@@ -133,14 +118,7 @@ function CustomizedWithBorder() {
 const LeftArrowIconButton = () => {
   return (
     <IconButton
-      icon={
-        <Icon
-          name="arrow-left"
-          type="MaterialCommunityIcons"
-          size={8}
-          color="white"
-        />
-      }
+      icon={<Icon name="arrow-left" as={Ionicons} size={8} color="white" />}
     />
   );
 };
@@ -148,21 +126,14 @@ const LeftArrowIconButton = () => {
 const HeartIcon = () => {
   return (
     <IconButton
-      icon={
-        <Icon
-          name="heart"
-          type="MaterialCommunityIcons"
-          size={6}
-          color="white"
-        />
-      }
+      icon={<Icon name="heart" as={Ionicons} size={6} color="white" />}
     />
   );
 };
 const SearchIcon = () => {
   return (
     <IconButton
-      icon={<Icon name="search1" type="AntDesign" size={6} color="white" />}
+      icon={<Icon name="search1" as={Ionicons} size={6} color="white" />}
     />
   );
 };

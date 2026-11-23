@@ -1,14 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import { Example as Flexible } from './Flexible';
 import { Example as Fixed } from './Fixed';
 import { Example as Hook } from './Hook';
 
-storiesOf('useSafeArea', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <View>{getStory()}</View>)
-  .add('Flexible', () => <Flexible />)
-  .add('Fixed', () => <Fixed />)
-  .add('Hook', () => <Hook />);
+export default {
+  title: 'useSafeArea',
+  decorators: [(getStory: any) => <View>{getStory()}</View>],
+};
+export const Story1 = { name: 'Flexible', render: () => <Flexible /> };
+export const Story2 = { name: 'Fixed', render: () => <Fixed /> };
+export const Story3 = { name: 'Hook', render: () => <Hook /> };

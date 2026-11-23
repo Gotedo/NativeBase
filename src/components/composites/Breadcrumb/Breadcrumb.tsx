@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import React, { memo, forwardRef } from 'react';
 import { AccessibilityRole, Platform } from 'react-native';
 import { HStack } from '../../primitives/Stack';

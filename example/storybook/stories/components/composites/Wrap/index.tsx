@@ -1,16 +1,21 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../Wrapper';
-import Basic from './Basic';
-import Spacing from './Spacing';
-import AlignmentAlign from './AlignmentAlign';
-import AlignmentJustify from './AlignmentJustify';
+import { Example as Basic } from './Basic';
+import { Example as Spacing } from './Spacing';
+import { Example as AlignmentAlign } from './AlignmentAlign';
+import { Example as AlignmentJustify } from './AlignmentJustify';
 
-storiesOf('Wrap', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic', () => <Basic />)
-  .add('Space', () => <Spacing />)
-  .add('AlignmentAlign', () => <AlignmentAlign />)
-  .add('AlignmentJustify', () => <AlignmentJustify />);
+export default {
+  title: 'Wrap',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Basic', render: () => <Basic /> };
+export const Story2 = { name: 'Space', render: () => <Spacing /> };
+export const Story3 = {
+  name: 'AlignmentAlign',
+  render: () => <AlignmentAlign />,
+};
+export const Story4 = {
+  name: 'AlignmentJustify',
+  render: () => <AlignmentJustify />,
+};

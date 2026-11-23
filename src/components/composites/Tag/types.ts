@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { CustomProps } from '../../../components/types';
 import type { InterfaceBoxProps } from '../../primitives/Box';
 import type { ColorSchemeType } from '../../../components/types';

@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { MutableRefObject } from 'react';
 import type { InterfaceInputProps } from '../../primitives/Input/types';
 import type { CustomProps, ResponsiveValue } from '../../../components/types';

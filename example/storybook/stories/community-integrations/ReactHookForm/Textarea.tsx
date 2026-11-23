@@ -7,7 +7,11 @@ interface IFormInput {
 }
 
 export const Example = () => {
-  const { control, handleSubmit, errors } = useForm<IFormInput>();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
   const onSubmit = (data: IFormInput) => {
     console.log('submiting with ', data);
   };
@@ -17,7 +21,7 @@ export const Example = () => {
         <FormControl.Label>What do you think?</FormControl.Label>
         <Controller
           control={control}
-          render={({ onChange, value }) => (
+          render={({ field: { onChange, value } }) => (
             <TextArea
               placeholder="TextArea"
               onChangeText={(val) => onChange(val)}
@@ -32,7 +36,7 @@ export const Example = () => {
           {errors.thought?.message}
         </FormControl.ErrorMessage>
       </FormControl>
-      <Button onPress={handleSubmit(onSubmit)} colorScheme="pink">
+      <Button onPress={() => handleSubmit(onSubmit)()} colorScheme="pink">
         Submit
       </Button>
     </VStack>

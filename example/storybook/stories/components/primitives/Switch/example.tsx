@@ -1,6 +1,6 @@
 import React from 'react';
 import { VStack, Switch } from 'native-base';
-import { select, boolean } from '@storybook/addon-knobs';
+import { select, boolean } from '../../../../controls';
 
 export const Example = () => {
   return (

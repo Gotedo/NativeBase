@@ -1,5 +1,6 @@
 import React from 'react';
-import { Tabs, Text } from 'native-base';
+import { Text } from 'native-base';
+import { Tabs } from '../../../../../../src/components/composites/Tabs';
 
 export const Example = () => {
   const [index, setIndex] = React.useState(0);

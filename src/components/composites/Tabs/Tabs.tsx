@@ -4,10 +4,10 @@ import type { ITabsProps } from './types';
 import { useThemeProps } from '../../../hooks';
 import { TabsContext } from './Context';
 import { Item } from '@react-stately/collections';
-import { useTabsState } from '@react-stately/tabs';
+import { useTabListState } from '@react-stately/tabs';
 import TabViews from './TabViews';
 import TabBar from './TabBar';
-import { useTabs } from '@react-native-aria/tabs';
+import { useTabs } from '../../../aria/tabs';
 import { mergeRefs } from '../../../utils';
 import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
 const getTabsAndBars = (children: any) => {
@@ -20,10 +20,10 @@ const getTabsAndBars = (children: any) => {
     if (item.type) {
       if (item.type.displayName === 'TabBar') {
         bars = bars.concat(item.props.children);
-        tabBarProps = { props: item.props, ref: item.ref };
+        tabBarProps = { props: item.props, ref: item.props.ref };
       } else if (item.type.displayName === 'TabViews') {
         views = views.concat(item.props.children);
-        tabViewsProps = { props: item.props, ref: item.ref };
+        tabViewsProps = { props: item.props, ref: item.props.ref };
       }
     }
   });
@@ -57,7 +57,7 @@ const Tabs = ({ children, ...props }: ITabsProps, ref: any) => {
     align,
     ...newProps
   } = useThemeProps('Tabs', props);
-  // useTabsState needs collection children.
+  // useTabListState needs collection children.
   const collectionChildren = convertToCollectionItems(children);
   const { tabBarProps, tabViewsProps } = getTabsAndBars(children);
   const mappedProps = {
@@ -70,8 +70,8 @@ const Tabs = ({ children, ...props }: ITabsProps, ref: any) => {
     onSelectionChange: (e: any) => onChange && onChange(parseInt(e)),
     keyboardActivation: props.keyboardActivation,
   };
-  // useTabsState needs collection children.
-  let state = useTabsState(mappedProps);
+  // useTabListState needs collection children.
+  let state = useTabListState(mappedProps);
   const setAlign = () => {
     switch (align) {
       case 'start':
@@ -84,8 +84,14 @@ const Tabs = ({ children, ...props }: ITabsProps, ref: any) => {
         return 'flex-start';
     }
   };
-  let tablistRef = React.useRef<any>();
-  let { tabListProps, tabPanelProps } = useTabs(mappedProps, state, tablistRef);
+  let tablistRef = React.useRef<any>(undefined);
+  const tabPanelRef = React.useRef<any>(null);
+  let { tabListProps, tabPanelProps } = useTabs(
+    mappedProps,
+    state,
+    tablistRef,
+    tabPanelRef
+  );
   //TODO: refactor for responsive prop
   if (useHasResponsiveProps(props)) {
     return null;
@@ -112,7 +118,7 @@ const Tabs = ({ children, ...props }: ITabsProps, ref: any) => {
         <TabViews
           {...tabPanelProps}
           {...tabViewsProps.props}
-          ref={tabViewsProps.ref}
+          ref={mergeRefs([tabPanelRef, tabViewsProps.ref])}
         >
           {state.selectedItem && state.selectedItem.props.children}
         </TabViews>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Spinner, Box } from 'native-base';
-import { select } from '@storybook/addon-knobs';
+import { select } from '../../../../controls';
 
 export const Example = () => {
   return (

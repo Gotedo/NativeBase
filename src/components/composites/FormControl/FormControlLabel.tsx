@@ -44,7 +44,7 @@ const FormControlLabel = (
       if (props.htmlFor) {
         _ref.current.htmlFor = props.htmlFor;
       } else if (resolvedProps?.nativeID) {
-        _ref.current.htmlFor = resolvedProps.nativeID;
+        _ref.current.htmlFor = `${resolvedProps.nativeID}-input`;
       }
     }
   }, [resolvedProps?.nativeID, props.htmlFor]);
