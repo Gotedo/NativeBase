@@ -1,12 +1,14 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../Wrapper';
 import { Example as ZStack } from './example';
 import { Example as CenterStack } from './CenterStack';
 
-storiesOf('ZStack', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic ZStack', () => <ZStack />)
-  .add('ZStack items centered', () => <CenterStack />);
+export default {
+  title: 'ZStack',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Basic ZStack', render: () => <ZStack /> };
+export const Story2 = {
+  name: 'ZStack items centered',
+  render: () => <CenterStack />,
+};

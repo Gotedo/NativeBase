@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import React, { memo, forwardRef } from 'react';
 import type { IInputGroupProps } from './types';
 import { getAttachedChildren } from '../../../utils';

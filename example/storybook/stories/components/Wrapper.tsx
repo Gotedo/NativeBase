@@ -105,9 +105,7 @@ const myTheme = extendTheme({
 });
 
 type MyThemeType = typeof myTheme;
-declare module 'native-base' {
-  interface ICustomTheme extends MyThemeType {}
-}
+// Keep this gallery's theme type local so it does not change other examples.
 
 function MyWrapper({ children }: any) {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -171,7 +169,7 @@ export default ({ children, theme }: any) => {
     },
     set: async (value: ColorMode) => {
       try {
-        await AsyncStorage.setItem('@example-wrapper-mode', value);
+        await AsyncStorage.setItem('@example-wrapper-mode', value ?? 'light');
       } catch (e) {
         console.log(e);
       }

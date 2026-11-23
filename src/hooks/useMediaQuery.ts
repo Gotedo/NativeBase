@@ -2,11 +2,7 @@ import { useWindowDimensions } from 'react-native';
 import isNil from 'lodash.isnil';
 
 type QueryKeys =
-  | 'maxWidth'
-  | 'minWidth'
-  | 'maxHeight'
-  | 'minHeight'
-  | 'orientation';
+  'maxWidth' | 'minWidth' | 'maxHeight' | 'minHeight' | 'orientation';
 
 type SubQuery = {
   [queryKey in QueryKeys]?: number | string;
@@ -58,16 +54,16 @@ function calculateQuery(
   }
   switch (key) {
     case 'maxWidth':
-      retval = !isNil(val) ? width <= val : undefined;
+      retval = !isNil(val) ? width <= Number(val) : undefined;
       break;
     case 'minWidth':
-      retval = !isNil(val) ? width >= val : undefined;
+      retval = !isNil(val) ? width >= Number(val) : undefined;
       break;
     case 'maxHeight':
-      retval = !isNil(val) ? height <= val : undefined;
+      retval = !isNil(val) ? height <= Number(val) : undefined;
       break;
     case 'minHeight':
-      retval = !isNil(val) ? height >= val : undefined;
+      retval = !isNil(val) ? height >= Number(val) : undefined;
       break;
     case 'orientation':
       if (!isNil(val)) {

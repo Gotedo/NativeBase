@@ -1,16 +1,15 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../Wrapper';
-import Usage from './usage';
-import Theme from './theme';
-import Modes from './modes';
-import Ref from './ref';
+import { Example as Usage } from './usage';
+import { Example as Theme } from './theme';
+import { Example as Modes } from './modes';
+import { Example as Ref } from './ref';
 
-storiesOf('Factory', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Usage', () => <Usage />)
-  .add('Theme', () => <Theme />)
-  .add('Modes', () => <Modes />)
-  .add('Ref', () => <Ref />);
+export default {
+  title: 'Factory',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Usage', render: () => <Usage /> };
+export const Story2 = { name: 'Theme', render: () => <Theme /> };
+export const Story3 = { name: 'Modes', render: () => <Modes /> };
+export const Story4 = { name: 'Ref', render: () => <Ref /> };

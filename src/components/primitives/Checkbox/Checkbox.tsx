@@ -10,7 +10,7 @@ import { mergeRefs } from './../../../utils';
 import type { ICheckboxProps } from './types';
 import { useToggleState } from '@react-stately/toggle';
 import { CheckboxGroupContext } from './CheckboxGroup';
-import { useCheckbox, useCheckboxGroupItem } from '@react-native-aria/checkbox';
+import { useCheckbox, useCheckboxGroupItem } from '../../../aria/checkbox';
 import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
 import { composeEventHandlers, combineContextAndProps } from '../../../utils';
 import { extractInObject, stylingProps } from '../../../theme/tools/utils';
@@ -35,12 +35,8 @@ const Checkbox = (
 ) => {
   const formControlContext = useFormControlContext();
 
-  const {
-    isInvalid,
-    isReadOnly,
-    isIndeterminate,
-    ...combinedProps
-  } = combineContextAndProps(formControlContext, props);
+  const { isInvalid, isReadOnly, isIndeterminate, ...combinedProps } =
+    combineContextAndProps(formControlContext, props);
 
   const checkboxGroupContext = useContext(CheckboxGroupContext);
   const state = useToggleState({
@@ -48,7 +44,7 @@ const Checkbox = (
     defaultSelected: combinedProps.defaultIsChecked,
     isSelected: combinedProps.isChecked,
   });
-  const _ref = React.useRef();
+  const _ref = React.useRef(undefined);
   const mergedRef = mergeRefs([ref, _ref]);
 
   // Swap hooks depending on whether this checkbox is inside a CheckboxGroup.
@@ -57,24 +53,24 @@ const Checkbox = (
   const { inputProps: groupItemInputProps } = checkboxGroupContext
     ? // eslint-disable-next-line react-hooks/rules-of-hooks
       useCheckboxGroupItem(
-        combinedProps,
+        { ...combinedProps, isReadOnly, isIndeterminate },
         checkboxGroupContext.state,
         //@ts-ignore
         mergedRef
       )
     : // eslint-disable-next-line react-hooks/rules-of-hooks
       useCheckbox(
-        combinedProps,
+        { ...combinedProps, isReadOnly, isIndeterminate },
         state,
         //@ts-ignore
         mergedRef
       );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const inputProps = React.useMemo(() => groupItemInputProps, [
-    groupItemInputProps.checked,
-    groupItemInputProps.disabled,
-  ]);
+  const inputProps = React.useMemo(
+    () => groupItemInputProps,
+    [groupItemInputProps.checked, groupItemInputProps.disabled]
+  );
 
   const contextCombinedProps = React.useMemo(() => {
     return { ...checkboxGroupContext, ...combinedProps };
@@ -107,7 +103,7 @@ const CheckboxComponent = React.memo(
     isPressed: isPressedProp,
     isFocused: isFocusedProp,
   }: any) => {
-    const _ref = React.useRef();
+    const _ref = React.useRef(undefined);
     const { hoverProps, isHovered } = useHover();
     const { pressableProps, isPressed } = useIsPressed();
     const { focusProps, isFocused } = useFocus();
@@ -151,15 +147,15 @@ const CheckboxComponent = React.memo(
       '_text',
     ]);
 
-    const [
-      accessibilityProps,
-      nonAccessibilityProps,
-    ] = extractInObject(nonLayoutProps, [
-      'accessibilityRole',
-      'accessibilityState',
-      'accessibilityLabel',
-      'accessibilityHint',
-    ]);
+    const [accessibilityProps, nonAccessibilityProps] = extractInObject(
+      nonLayoutProps,
+      [
+        'accessibilityRole',
+        'accessibilityState',
+        'accessibilityLabel',
+        'accessibilityHint',
+      ]
+    );
 
     //TODO: refactor for responsive prop
     if (useHasResponsiveProps(resolvedProps)) {
@@ -174,6 +170,11 @@ const CheckboxComponent = React.memo(
         onPress={onPress}
         ref={mergeRefs([_ref, wrapperRef])}
         accessibilityRole="checkbox"
+        accessibilityState={{
+          ...accessibilityProps.accessibilityState,
+          checked: isIndeterminate ? 'mixed' : !!isChecked,
+          disabled: !!isDisabled,
+        }}
         onPressIn={composeEventHandlers(onPressIn, pressableProps.onPressIn)}
         onPressOut={composeEventHandlers(onPressOut, pressableProps.onPressOut)}
         // @ts-ignore - web only

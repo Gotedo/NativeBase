@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { InterfaceBoxProps } from '../../primitives/Box';
 import type { IImageProps } from '../../primitives/Image';
 import type { ImageSourcePropType } from 'react-native';
@@ -24,8 +25,7 @@ export interface InterfaceAvatarProps extends InterfaceBoxProps<IAvatarProps> {
   wrapperRef?: MutableRefObject<any>;
 }
 
-export interface IAvatarBadgeProps
-  extends InterfaceBoxProps<IAvatarBadgeProps> {}
+export interface IAvatarBadgeProps extends InterfaceBoxProps<IAvatarBadgeProps> {}
 
 export interface IAvatarGroupProps extends IAvatarProps {
   /**

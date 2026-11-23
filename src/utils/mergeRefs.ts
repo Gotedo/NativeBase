@@ -1,14 +1,30 @@
+import type { Ref, RefCallback } from 'react';
+
+/** Compose object and callback refs, including React 19 cleanup callbacks. */
 export function mergeRefs<T = any>(
-  refs: Array<React.MutableRefObject<T> | React.LegacyRef<T>>
-): React.RefCallback<T> {
+  refs: Array<Ref<T> | undefined>
+): RefCallback<T> {
   return (value) => {
-    refs.forEach((ref) => {
+    const cleanups = refs.map((ref) => {
       if (typeof ref === 'function') {
-        ref(value);
-      } else if (ref != null) {
-        (ref as React.MutableRefObject<T | null>).current = value;
+        const cleanup = ref(value);
+        return () => {
+          if (typeof cleanup === 'function') cleanup();
+          else ref(null);
+        };
       }
+      if (ref != null) {
+        ref.current = value;
+        return () => {
+          ref.current = null;
+        };
+      }
+      return undefined;
     });
+    if (value !== null) {
+      return () => cleanups.forEach((cleanup) => cleanup?.());
+    }
+    return undefined;
   };
 }
 

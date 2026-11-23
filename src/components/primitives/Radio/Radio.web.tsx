@@ -8,11 +8,11 @@ import { usePropsResolution } from '../../../hooks/useThemeProps';
 import { wrapStringChild } from '../../../utils/wrapStringChild';
 import type { IRadioProps } from './types';
 import { mergeRefs } from './../../../utils';
-import { useHover } from '@react-native-aria/interactions';
-import { useRadio } from '@react-native-aria/radio';
+import { useHover } from '../../../aria/interactions';
+import { useRadio } from '../../../aria/radio';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { RadioContext } from './RadioGroup';
-import { useFocusRing } from '@react-native-aria/focus';
+import { useFocusRing } from '../../../aria/focus';
 import { CircleIcon } from '../Icon/Icons';
 import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
 import { combineContextAndProps, isEmptyObj } from '../../../utils';
@@ -36,7 +36,7 @@ const RadioComponent = memo(
     ) => {
       const { isInvalid, isReadOnly, isIndeterminate } = combinedProps;
       const { disabled: isDisabled, checked: isChecked } = inputProps;
-      const _ref = React.useRef(null);
+      const _ref = React.useRef<any>(null);
       const { isHovered } = useHover({}, _ref);
       const mergedRefs = mergeRefs([_ref, wrapperRef]);
       const { focusProps, isFocusVisible } = useFocusRing();
@@ -55,23 +55,18 @@ const RadioComponent = memo(
       const handlePressOut = () => {
         isPressedProp ? setPressed(true) : setPressed(false);
       };
-      const {
-        _interactionBox,
-        _icon,
-        _stack,
-        _text,
-        ...resolvedProps
-      } = usePropsResolution('Radio', combinedProps, {
-        isInvalid,
-        isReadOnly,
-        isFocusVisible: isFocusVisibleProp || isFocused || isFocusVisible,
-        isDisabled,
-        isIndeterminate,
-        isChecked,
-        isHovered: isHoveredProp || isHovered,
-        isPressed,
-        isFocused,
-      });
+      const { _interactionBox, _icon, _stack, _text, ...resolvedProps } =
+        usePropsResolution('Radio', combinedProps, {
+          isInvalid,
+          isReadOnly,
+          isFocusVisible: isFocusVisibleProp || isFocused || isFocusVisible,
+          isDisabled,
+          isIndeterminate,
+          isChecked,
+          isHovered: isHoveredProp || isHovered,
+          isPressed,
+          isFocused,
+        });
 
       // only calling below function when icon exist.
       const sizedIcon = () =>
@@ -87,7 +82,7 @@ const RadioComponent = memo(
             <Box {..._interactionBox} />
             {/* Radio */}
             <Center {...resolvedProps}>
-              {icon && sizedIcon && isChecked ? (
+              {icon && isChecked ? (
                 sizedIcon()
               ) : (
                 <CircleIcon {..._icon} opacity={isChecked ? 1 : 0} />
@@ -147,7 +142,7 @@ const Radio = (
     props
   );
 
-  const inputRef = React.useRef(null);
+  const inputRef = React.useRef<any>(null);
   const radioState = useRadio(
     { ...combinedProps, 'aria-label': props.accessibilityLabel, children },
     contextState.state ?? {},
@@ -156,10 +151,10 @@ const Radio = (
 
   //@ts-ignore
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const inputProps = React.useMemo(() => radioState.inputProps, [
-    radioState.inputProps.checked,
-    radioState.inputProps.disabled,
-  ]);
+  const inputProps = React.useMemo(
+    () => radioState.inputProps,
+    [radioState.inputProps.checked, radioState.inputProps.disabled]
+  );
 
   const contextCombinedProps = React.useMemo(() => {
     return { ...combinedProps };

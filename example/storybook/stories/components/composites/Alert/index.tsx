@@ -1,6 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../Wrapper';
 // import { Example as Playground } from './knobEnabled';
 import { Example as Composition } from './composition';
@@ -11,14 +9,14 @@ import { Example as Status } from './status';
 import { Example as ColorScheme } from './colorScheme';
 import { Example as Action } from './action';
 
-storiesOf('Alert', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  // .add('Playground', () => <Playground />)
-  .add('Basic', () => <Basic />)
-  .add('Usage', () => <Usage />)
-  .add('Status', () => <Status />)
-  .add('ColorScheme', () => <ColorScheme />)
-  .add('Variant', () => <Variant />)
-  .add('Composition', () => <Composition />)
-  .add('action', () => <Action />);
+export default {
+  title: 'Alert',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Basic', render: () => <Basic /> };
+export const Story2 = { name: 'Usage', render: () => <Usage /> };
+export const Story3 = { name: 'Status', render: () => <Status /> };
+export const Story4 = { name: 'ColorScheme', render: () => <ColorScheme /> };
+export const Story5 = { name: 'Variant', render: () => <Variant /> };
+export const Story6 = { name: 'Composition', render: () => <Composition /> };
+export const Story7 = { name: 'action', render: () => <Action /> };

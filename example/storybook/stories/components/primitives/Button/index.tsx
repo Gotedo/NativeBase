@@ -1,6 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import { Example as WithRef } from './WithRef';
 import { Example as Sizes } from './sizes';
 import { Example as Basic } from './basic';
@@ -10,13 +8,14 @@ import { Example as Icons } from './icons';
 import { Example as Composition } from './Composition';
 import Wrapper from './../../Wrapper';
 
-storiesOf('Button', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic', () => <Basic />)
-  .add('Variants', () => <Variants />)
-  .add('Sizes', () => <Sizes />)
-  .add('Loading', () => <Loading />)
-  .add('Icons', () => <Icons />)
-  .add('Composition', () => <Composition />)
-  .add('WithRef', () => <WithRef />);
+export default {
+  title: 'Button',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Basic', render: () => <Basic /> };
+export const Story2 = { name: 'Variants', render: () => <Variants /> };
+export const Story3 = { name: 'Sizes', render: () => <Sizes /> };
+export const Story4 = { name: 'Loading', render: () => <Loading /> };
+export const Story5 = { name: 'Icons', render: () => <Icons /> };
+export const Story6 = { name: 'Composition', render: () => <Composition /> };
+export const Story7 = { name: 'WithRef', render: () => <WithRef /> };

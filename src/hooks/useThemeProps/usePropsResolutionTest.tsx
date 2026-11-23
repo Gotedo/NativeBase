@@ -1,3 +1,4 @@
+import type { ComponentTheme } from '../../theme';
 import get from 'lodash.get';
 import merge from 'lodash.merge';
 import { Platform } from 'react-native';
@@ -137,7 +138,11 @@ export function usePropsResolutionTest(
   const { theme } = useNativeBase();
   const colorModeProps = useColorMode();
 
-  const componentTheme = get(theme, `components.${component}`, {});
+  const componentTheme: ComponentTheme = get(
+    theme,
+    `components.${component}`,
+    {}
+  );
 
   // STEP 1: combine default props and incoming props
 

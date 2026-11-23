@@ -22,8 +22,8 @@ const SectionListComponent = <ItemT extends any, sectionT extends any>(
 
 export const SectionList = forwardRef(SectionListComponent) as <
   ItemT,
-  sectionT
+  sectionT,
 >(
-  props: ISectionListProps<ItemT, sectionT>,
-  ref: any
-) => any;
+  props: ISectionListProps<ItemT, sectionT> &
+    React.RefAttributes<RNSectionList<ItemT, sectionT>>
+) => React.ReactElement | null;

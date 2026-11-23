@@ -10,9 +10,9 @@ import type { ICheckboxProps } from './types';
 import { useToggleState } from '@react-stately/toggle';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { CheckboxGroupContext } from './CheckboxGroup';
-import { useHover } from '@react-native-aria/interactions';
-import { useCheckbox, useCheckboxGroupItem } from '@react-native-aria/checkbox';
-import { useFocusRing } from '@react-native-aria/focus';
+import { useHover } from '../../../aria/interactions';
+import { useCheckbox, useCheckboxGroupItem } from '../../../aria/checkbox';
+import { useFocusRing } from '../../../aria/focus';
 import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
 import { extractInObject, stylingProps } from '../../../theme/tools/utils';
 import { combineContextAndProps } from '../../../utils';
@@ -31,12 +31,8 @@ const Checkbox = (
 ) => {
   const formControlContext = useFormControlContext();
 
-  const {
-    isInvalid,
-    isReadOnly,
-    isIndeterminate,
-    ...combinedProps
-  } = combineContextAndProps(formControlContext, props);
+  const { isInvalid, isReadOnly, isIndeterminate, ...combinedProps } =
+    combineContextAndProps(formControlContext, props);
 
   const checkboxGroupContext = React.useContext(CheckboxGroupContext);
   const state = useToggleState({
@@ -45,7 +41,7 @@ const Checkbox = (
     isSelected: props.isChecked,
   });
 
-  const _ref = React.useRef();
+  const _ref = React.useRef(undefined);
   const mergedRef = mergeRefs([ref, _ref]);
 
   // Swap hooks depending on whether this checkbox is inside a CheckboxGroup.
@@ -75,11 +71,14 @@ const Checkbox = (
       );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const inputProps = React.useMemo(() => groupItemInputProps, [
-    groupItemInputProps.checked,
-    groupItemInputProps.disabled,
-    groupItemInputProps,
-  ]);
+  const inputProps = React.useMemo(
+    () => groupItemInputProps,
+    [
+      groupItemInputProps.checked,
+      groupItemInputProps.disabled,
+      groupItemInputProps,
+    ]
+  );
 
   const contextCombinedProps = React.useMemo(() => {
     return { ...checkboxGroupContext, ...combinedProps };
@@ -113,29 +112,23 @@ const CheckboxComponent = React.memo(
     isHovered: isHoveredProp,
     isFocusVisible: isFocusVisibleProp,
   }: any) => {
-    const _ref = React.useRef();
+    const _ref = React.useRef(undefined);
     const { isHovered } = useHover({}, _ref);
 
     const { checked: isChecked, disabled: isDisabled } = inputProps;
 
     const { focusProps, isFocusVisible } = useFocusRing();
 
-    const {
-      icon,
-      _interactionBox,
-      _icon,
-      _stack,
-      _text,
-      ...resolvedProps
-    } = usePropsResolution('Checkbox', combinedProps, {
-      isInvalid,
-      isReadOnly,
-      isFocusVisible: isFocusVisibleProp || isFocusVisible,
-      isDisabled,
-      isIndeterminate,
-      isChecked,
-      isHovered: isHovered || isHoveredProp,
-    });
+    const { icon, _interactionBox, _icon, _stack, _text, ...resolvedProps } =
+      usePropsResolution('Checkbox', combinedProps, {
+        isInvalid,
+        isReadOnly,
+        isFocusVisible: isFocusVisibleProp || isFocusVisible,
+        isDisabled,
+        isIndeterminate,
+        isChecked,
+        isHovered: isHovered || isHoveredProp,
+      });
 
     const [layoutProps, nonLayoutProps] = extractInObject(resolvedProps, [
       ...stylingProps.margin,

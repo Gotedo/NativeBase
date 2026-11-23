@@ -1,5 +1,6 @@
 import React from 'react';
-import { VStack, Tabs } from 'native-base';
+import { VStack } from 'native-base';
+import { Tabs } from '../../../../../../src/components/composites/Tabs';
 
 export const Example = () => {
   return (

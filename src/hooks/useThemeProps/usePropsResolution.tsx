@@ -286,54 +286,6 @@ export const usePropsResolutionWithComponentTheme = (
     cleanIncomingProps
   );
 
-  // STEP 1.5: resolving component theme
-  let combinedBaseStyle = {};
-  let combinedVariantStyle = {};
-  let combinedSizeStyle = {};
-  extendedTheme.map((extededComponentTheme: any) => {
-    if (extededComponentTheme.baseStyle) {
-      combinedBaseStyle = {
-        ...combinedBaseStyle,
-        ...resolveComponentTheme(['baseStyle'], extededComponentTheme),
-      };
-    }
-    if (incomingWithDefaultProps.variant) {
-      if (extededComponentTheme.variants) {
-        combinedVariantStyle = {
-          ...combinedVariantStyle,
-          ...resolveComponentTheme(
-            ['variants', incomingWithDefaultProps.variant],
-            extededComponentTheme
-          ),
-        };
-      }
-    }
-    if (
-      incomingWithDefaultProps.size &&
-      extededComponentTheme?.sizes &&
-      extededComponentTheme?.sizes[incomingWithDefaultProps.size]
-    ) {
-      if (
-        typeof extededComponentTheme.sizes[incomingWithDefaultProps.size] ===
-          'string' ||
-        typeof extededComponentTheme.sizes[incomingWithDefaultProps.size] ===
-          'number'
-      ) {
-        incomingWithDefaultProps.size =
-          extededComponentTheme.sizes[incomingWithDefaultProps.size];
-      } else {
-        combinedSizeStyle = {
-          ...combinedSizeStyle,
-          ...resolveComponentTheme(
-            ['sizes', incomingWithDefaultProps.size],
-            extededComponentTheme
-          ),
-        };
-        incomingWithDefaultProps.size = undefined;
-      }
-    }
-  });
-
   // STEP 2: flatten them
   if (process.env.NODE_ENV === 'development' && cleanIncomingProps.debug) {
     /* eslint-disable-next-line */
@@ -372,6 +324,51 @@ export const usePropsResolutionWithComponentTheme = (
     ...flattenProps,
     ...responsivelyResolvedProps,
   };
+  // STEP 1.5: resolving component theme
+  let combinedBaseStyle = {};
+  let combinedVariantStyle = {};
+  let combinedSizeStyle = {};
+  extendedTheme.map((extededComponentTheme: any) => {
+    if (extededComponentTheme.baseStyle) {
+      combinedBaseStyle = {
+        ...combinedBaseStyle,
+        ...resolveComponentTheme(['baseStyle'], extededComponentTheme),
+      };
+    }
+    if (flattenProps.variant) {
+      if (extededComponentTheme.variants) {
+        combinedVariantStyle = {
+          ...combinedVariantStyle,
+          ...resolveComponentTheme(
+            ['variants', flattenProps.variant],
+            extededComponentTheme
+          ),
+        };
+      }
+    }
+    if (
+      flattenProps.size &&
+      extededComponentTheme?.sizes &&
+      extededComponentTheme?.sizes[flattenProps.size]
+    ) {
+      if (
+        typeof extededComponentTheme.sizes[flattenProps.size] === 'string' ||
+        typeof extededComponentTheme.sizes[flattenProps.size] === 'number'
+      ) {
+        flattenProps.size = extededComponentTheme.sizes[flattenProps.size];
+      } else {
+        combinedSizeStyle = {
+          ...combinedSizeStyle,
+          ...resolveComponentTheme(
+            ['sizes', flattenProps.size],
+            extededComponentTheme
+          ),
+        };
+        flattenProps.size = undefined;
+      }
+    }
+  });
+
   // STEP 3: Pass it to baseStyle, then variant and then size and resolve them.
 
   // NOTE: Resoloving baseStyle

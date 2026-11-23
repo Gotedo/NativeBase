@@ -1,6 +1,6 @@
 import omitBy from 'lodash.omitby';
 import isNil from 'lodash.isnil';
-import pick from 'lodash.pick';
+import pick from 'lodash/pick';
 import omit from 'lodash.omit';
 import get from 'lodash.get';
 import type { IV33xTheme } from '../index';
@@ -287,7 +287,8 @@ export const platformSpecificSpaceUnits = (theme: IV33xTheme) => {
   const newTheme = { ...theme };
   const isWeb = Platform.OS === 'web';
   scales.forEach((key) => {
-    const scale = get(theme, key, {});
+    const scale: Record<string, string | number | Record<string, unknown>> =
+      get(theme, key, {});
     const newScale = { ...scale };
     for (const scaleKey in scale) {
       const val = scale[scaleKey];

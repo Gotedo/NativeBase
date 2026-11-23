@@ -60,3 +60,11 @@ node_modules
 # personal 
 .env
 .npmrc
+# Local native build environment and generated Storybook entry
+RNBareExample/ios/.xcode.env.local
+
+# Local compatibility validation outputs
+.validation/
+
+# Generated native CMake build state
+.cxx/

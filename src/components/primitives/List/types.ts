@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { IStackProps } from '../Stack';
 import type { IPressableProps } from '../Pressable';
 import type { IIconProps } from '../Icon/types';

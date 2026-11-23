@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { StatusBarProps } from 'react-native';
 import type { CustomProps } from '../../../components/types';
 

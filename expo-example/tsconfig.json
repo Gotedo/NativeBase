@@ -1,17 +1,16 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": false,
+    "declaration": false,
+    "noEmit": true,
+    "types": ["react", "jest", "node"],
     "paths": {
       "native-base": ["../src/index"]
-    },
-    "allowSyntheticDefaultImports": true,
-    "jsx": "react-native",
-    "lib": ["dom", "esnext"],
-    "moduleResolution": "node",
-    "noEmit": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "strict": true
+    }
   },
-  "extends": "expo/tsconfig.base"
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "web-build"]
 }

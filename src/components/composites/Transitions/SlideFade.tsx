@@ -9,10 +9,12 @@ import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
 const SlideFade = ({ children, ...props }: ISlideFadeProps, ref?: any) => {
   const isDomUsable = canUseDom();
 
-  const { in: animationState, duration, offsetX, offsetY } = useThemeProps(
-    'SlideFade',
-    props
-  );
+  const {
+    in: animationState,
+    duration,
+    offsetX,
+    offsetY,
+  } = useThemeProps('SlideFade', props);
   const fadeAnim = React.useRef(new Animated.Value(0)).current;
   const slideAnimX = React.useRef(new Animated.Value(0)).current;
   const slideAnimY = React.useRef(new Animated.Value(0)).current;
@@ -68,7 +70,7 @@ const SlideFade = ({ children, ...props }: ISlideFadeProps, ref?: any) => {
       style={[
         {
           opacity: fadeAnim,
-          transform: [{ translateX: slideAnimX, translateY: slideAnimY }],
+          transform: [{ translateX: slideAnimX }, { translateY: slideAnimY }],
         },
       ]}
       ref={ref}

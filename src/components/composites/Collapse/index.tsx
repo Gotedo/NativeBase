@@ -1,6 +1,6 @@
 import isNil from 'lodash.isnil';
 import React, { useEffect, useRef, forwardRef } from 'react';
-import { ViewStyle, LayoutAnimation, UIManager, Platform } from 'react-native';
+import { ViewStyle, LayoutAnimation, Platform } from 'react-native';
 import { Box } from '../../primitives';
 import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
 import type { InterfaceBoxProps } from '../../primitives/Box';
@@ -19,7 +19,7 @@ export type InterfaceCollapseProps = InterfaceBoxProps<ICollapseProps> & {
 export type ICollapseProps = InterfaceCollapseProps & CustomProps<'Box'>;
 
 function usePrevious(value: any) {
-  const ref = useRef();
+  const ref = useRef(undefined);
   function updatePrevious(newVal: any) {
     ref.current = newVal;
   }
@@ -42,10 +42,6 @@ const Collapse = (
   }: ICollapseProps,
   ref?: any
 ) => {
-  if (Platform.OS === 'android') {
-    UIManager.setLayoutAnimationEnabledExperimental &&
-      UIManager.setLayoutAnimationEnabledExperimental(true);
-  }
   const CustomLayoutLinear = {
     duration: duration ? duration : 400,
     create: {
@@ -59,8 +55,8 @@ const Collapse = (
   const defaultStartHeight: any = isOpen
     ? endingHeight
     : startingHeight
-    ? startingHeight
-    : 1;
+      ? startingHeight
+      : 1;
   let animatedStyle = { height: defaultStartHeight };
   const animateView = () => {
     if (onAnimationStart) {
@@ -70,7 +66,7 @@ const Collapse = (
       height: isOpen ? endingHeight : defaultStartHeight,
     };
     let callback = onAnimationEnd ? onAnimationEnd : () => {};
-    LayoutAnimation.configureNext(CustomLayoutLinear, callback());
+    LayoutAnimation.configureNext(CustomLayoutLinear, () => callback());
   };
 
   let wasOpen = usePrevious(isOpen);

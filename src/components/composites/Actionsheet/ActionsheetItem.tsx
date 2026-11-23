@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import React, { memo, forwardRef } from 'react';
 import { Pressable } from '../../primitives/Pressable';
 import Box from '../../primitives/Box';
@@ -23,16 +24,10 @@ const ActionsheetItem = (
   }: IActionsheetItemProps,
   ref: any
 ) => {
-  const {
-    _text,
-    _stack,
-    _icon,
-    _spinner,
-    isLoadingText,
-    ...resolvedProps
-  } = usePropsResolution('ActionsheetItem', props, undefined, {
-    cascadePseudoProps: true,
-  });
+  const { _text, _stack, _icon, _spinner, isLoadingText, ...resolvedProps } =
+    usePropsResolution('ActionsheetItem', props, undefined, {
+      cascadePseudoProps: true,
+    });
   //TODO: refactor for responsive prop
   if (useHasResponsiveProps(props)) {
     return null;

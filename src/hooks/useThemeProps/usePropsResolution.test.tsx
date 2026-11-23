@@ -19,7 +19,7 @@ import {
 } from '../../components/primitives';
 // import { Ionicons } from '@expo/vector-icons';
 import { FormControl, Menu } from '../../components/composites';
-import { Platform } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { extendTheme } from '../../core/extendTheme';
 import { fireEvent } from '@testing-library/react-native';
 // import { InfoIcon } from '../../components/primitives/Icon/Icons';
@@ -215,7 +215,7 @@ describe('props resolution', () => {
           //@ts-ignore
           variant="myBox"
           //@ts-ignore
-          // size="xs"
+          size="xs"
         >
           hello world
         </Box>
@@ -253,7 +253,7 @@ describe('props resolution', () => {
       width: defaultTheme.space['20'],
     });
 
-    expect(spinner.props.style).toEqual([[{}, { dataSet: {} }], undefined]);
+    expect(StyleSheet.flatten(spinner.props.style)).toEqual({ dataSet: {} });
   });
 
   it('resolves base style and variants, sizes and default props with props', () => {
@@ -835,7 +835,7 @@ describe('props resolution', () => {
     expect(sliderElement.props.maxValue).toBe(100);
     expect(sliderElement.props.step).toBe(10);
     expect(sliderElement.props.thumbSize).toBe(4);
-    expect(sliderElement.props.sliderSize).toBe(4);
+    expect(sliderElement.props.sliderTrackHeight).toBe(4);
     expect(sliderElement.props.colorScheme).toBe('red');
   });
 
@@ -900,7 +900,7 @@ describe('props resolution', () => {
     expect(sliderElement.props.maxValue).toBe(120);
     expect(sliderElement.props.step).toBe(25);
     expect(sliderElement.props.thumbSize).toBe(5);
-    expect(sliderElement.props.sliderSize).toBe(5);
+    expect(sliderElement.props.sliderTrackHeight).toBe(5);
     expect(sliderElement.props.colorScheme).toBe('blue');
   });
   it('tests lineHeight & letterspacing in text ', () => {
@@ -961,7 +961,7 @@ describe('props resolution', () => {
     expect(sliderElement.props.maxValue).toBe(110);
     expect(sliderElement.props.step).toBe(15);
     expect(sliderElement.props.thumbSize).toBe(5);
-    expect(sliderElement.props.sliderSize).toBe(5);
+    expect(sliderElement.props.sliderTrackHeight).toBe(5);
     expect(sliderElement.props.colorScheme).toBe('green');
   });
 

@@ -1,9 +1,11 @@
+import type { JSX } from 'react';
 import type { KeyboardAvoidingViewProps } from 'react-native';
 import type { StyledProps } from '../../../theme/types';
 import type { CustomProps, PlatformProps } from '../../types';
 
 export interface InterfaceKeyboardAvoidingViewProps
-  extends KeyboardAvoidingViewProps,
+  extends
+    KeyboardAvoidingViewProps,
     StyledProps,
     PlatformProps<IKeyboardAvoidingViewProps> {
   /**

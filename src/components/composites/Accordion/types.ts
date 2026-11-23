@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { IIconProps } from '../../primitives';
 import type { ICollapseProps } from '../../composites/Collapse';
 import type { MutableRefObject } from 'react';
@@ -16,11 +17,12 @@ export type IAccordionItemProps = InterfaceBoxProps<IAccordionItemProps> & {
   isDisabled?: boolean;
   id?: number;
 };
-export type IAccordionSummaryProps = InterfaceBoxProps<IAccordionSummaryProps> & {
-  _expanded?: Omit<IAccordionSummaryProps, '_expanded'>;
-  _disabled?: Omit<IAccordionSummaryProps, '_disabled'>;
-  _hover?: Omit<IAccordionSummaryProps, '_hover'>;
-};
+export type IAccordionSummaryProps =
+  InterfaceBoxProps<IAccordionSummaryProps> & {
+    _expanded?: Omit<IAccordionSummaryProps, '_expanded'>;
+    _disabled?: Omit<IAccordionSummaryProps, '_disabled'>;
+    _hover?: Omit<IAccordionSummaryProps, '_hover'>;
+  };
 export type IAccordionDetailsProps = ICollapseProps & {};
 export type IAccordionContextProps = {
   index?: number[];

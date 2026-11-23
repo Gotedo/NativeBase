@@ -17,7 +17,11 @@ interface IFormInput {
 }
 
 export const Example = () => {
-  const { control, handleSubmit, errors } = useForm<IFormInput>();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
   const onSubmit = (data: IFormInput) => {
     console.log('submiting with ', data);
   };
@@ -27,7 +31,7 @@ export const Example = () => {
         <FormControl.Label>Hobbies</FormControl.Label>
         <Controller
           control={control}
-          render={({ onChange }) => (
+          render={({ field: { onChange } }) => (
             <Checkbox.Group
               onChange={(values) => {
                 onChange(values);
@@ -76,7 +80,7 @@ export const Example = () => {
         <FormControl.Label>Gender</FormControl.Label>
         <Controller
           control={control}
-          render={({ onChange }) => (
+          render={({ field: { onChange } }) => (
             <Radio.Group
               name="gender"
               flexDirection="row"
@@ -97,7 +101,7 @@ export const Example = () => {
           {errors.gender?.message}
         </FormControl.ErrorMessage>
       </FormControl>
-      <Button onPress={handleSubmit(onSubmit)} colorScheme="pink">
+      <Button onPress={() => handleSubmit(onSubmit)()} colorScheme="pink">
         Submit
       </Button>
     </VStack>

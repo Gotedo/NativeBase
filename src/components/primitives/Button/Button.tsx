@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import React, { memo, forwardRef } from 'react';
 import Spinner from '../Spinner';
 import { usePropsResolution } from '../../../hooks/useThemeProps';
@@ -11,7 +12,7 @@ import {
   useFocus,
   useIsPressed,
 } from '../../primitives/Pressable/Pressable';
-import { useFocusRing } from '@react-native-aria/focus';
+import { useFocusRing } from '../../../aria/focus';
 import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
 
 const Button = (

@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { InterfaceBoxProps } from '../Box';
 import type { IButtonProps } from '../Button';
 import type {

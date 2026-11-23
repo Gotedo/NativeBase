@@ -1,18 +1,11 @@
+import type { JSX } from 'react';
 import React from 'react';
 import { default as Box } from '../components/primitives/Box';
 import type { SpaceType as ThemeSpaceType } from '../components/types';
 import { ResponsiveQueryContext } from './useResponsiveQuery/ResponsiveQueryProvider';
 
 type SpaceType =
-  | 'gutter'
-  | '2xs'
-  | 'xs'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | '2xl'
-  | ThemeSpaceType;
+  'gutter' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | ThemeSpaceType;
 
 // Thanks @gregberge for code and @nandorojo for suggestion.
 // Original source: https://github.com/gregberge/react-flatten-children

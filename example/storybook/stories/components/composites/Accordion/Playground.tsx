@@ -1,6 +1,6 @@
 import React from 'react';
 import { Accordion, Box } from 'native-base';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean } from '../../../../controls';
 export const Example = () => {
   return (
     <Box m={3}>

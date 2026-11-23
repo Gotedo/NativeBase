@@ -1,6 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../Wrapper';
 import { Example as Usage } from './usage';
 import { Example as Size } from './Size';
@@ -13,16 +11,20 @@ import { Example as Playground } from './Playground';
 import { Example as Disabled } from './isDisabled';
 import { Example as ReadOnly } from './isReadOnly';
 
-storiesOf('Slider', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Playground', () => <Playground />)
-  .add('Usage', () => <Usage />)
-  .add('Size', () => <Size />)
-  .add('Color', () => <Color />)
-  .add('Vertical', () => <Vertical />)
-  .add('Value', () => <Value />)
-  .add('Customized', () => <Customized />)
-  .add('Disabled', () => <Disabled />)
-  .add('ReadOnly', () => <ReadOnly />)
-  .add('Form Controlled', () => <FormControlled />);
+export default {
+  title: 'Slider',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Playground', render: () => <Playground /> };
+export const Story2 = { name: 'Usage', render: () => <Usage /> };
+export const Story3 = { name: 'Size', render: () => <Size /> };
+export const Story4 = { name: 'Color', render: () => <Color /> };
+export const Story5 = { name: 'Vertical', render: () => <Vertical /> };
+export const Story6 = { name: 'Value', render: () => <Value /> };
+export const Story7 = { name: 'Customized', render: () => <Customized /> };
+export const Story8 = { name: 'Disabled', render: () => <Disabled /> };
+export const Story9 = { name: 'ReadOnly', render: () => <ReadOnly /> };
+export const Story10 = {
+  name: 'Form Controlled',
+  render: () => <FormControlled />,
+};

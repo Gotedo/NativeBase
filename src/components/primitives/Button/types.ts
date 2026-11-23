@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { ITextProps } from './../Text/types';
 import type { IStackProps } from '../Stack';
 import type { ResponsiveValue } from '../../types';
@@ -29,8 +30,7 @@ import type { ColorSchemeType } from '../../../components/types';
 // Todo: Create underscore Props section on docs.
 // _hover?: IButtonProps;
 
-export interface InterfaceButtonProps
-  extends InterfacePressableProps<IButtonProps> {
+export interface InterfaceButtonProps extends InterfacePressableProps<IButtonProps> {
   /**
    * The color of the radio when it's checked. This should be one of the color keys in the theme (e.g."green", "red").
    * @default 'primary'

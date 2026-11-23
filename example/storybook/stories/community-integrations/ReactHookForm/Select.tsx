@@ -4,11 +4,15 @@ import { useForm, Controller } from 'react-hook-form';
 import { MaterialIcons } from '@expo/vector-icons';
 
 interface IFormInput {
-  language: number;
+  language: string;
 }
 
 export const Example = () => {
-  const { control, handleSubmit, errors } = useForm<IFormInput>();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
   const onSubmit = (data: IFormInput) => {
     console.log('submiting with ', data);
   };
@@ -18,7 +22,7 @@ export const Example = () => {
         <FormControl.Label>Fav language:</FormControl.Label>
         <Controller
           control={control}
-          render={({ onChange, value }) => (
+          render={({ field: { onChange, value } }) => (
             <Select
               placeholder="Pick language"
               selectedValue={value}
@@ -46,7 +50,7 @@ export const Example = () => {
           {errors.language?.message}
         </FormControl.ErrorMessage>
       </FormControl>
-      <Button onPress={handleSubmit(onSubmit)} colorScheme="pink">
+      <Button onPress={() => handleSubmit(onSubmit)()} colorScheme="pink">
         Submit
       </Button>
     </VStack>

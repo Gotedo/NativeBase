@@ -5,7 +5,7 @@ import { usePropsResolution } from '../../../hooks';
 import type { ISliderProps } from './types';
 import Box from '../Box';
 import { SliderContext } from './Context';
-import { useSlider } from '@react-native-aria/slider';
+import { useSlider } from '../../../aria/slider';
 import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
 
 function Slider({ isDisabled, isReadOnly, ...props }: ISliderProps, ref?: any) {
@@ -52,17 +52,14 @@ function Slider({ isDisabled, isReadOnly, ...props }: ISliderProps, ref?: any) {
     isReadOnly,
   });
 
-  const { trackProps } = useSlider(
-    (props as unknown) as any,
-    state,
-    trackLayout
-  );
+  const { trackProps } = useSlider(props as unknown as any, state, trackLayout);
 
   const contextValue = React.useMemo(() => {
     return {
       trackLayout,
       state,
       orientation: props.orientation,
+      accessibilityLabel: props.accessibilityLabel,
       isDisabled: isDisabled,
       isReversed: props.isReversed,
       colorScheme: props.colorScheme,
@@ -78,6 +75,7 @@ function Slider({ isDisabled, isReadOnly, ...props }: ISliderProps, ref?: any) {
     trackLayout,
     state,
     props.orientation,
+    props.accessibilityLabel,
     isDisabled,
     props.isReversed,
     props.colorScheme,
@@ -97,9 +95,12 @@ function Slider({ isDisabled, isReadOnly, ...props }: ISliderProps, ref?: any) {
       <Box {...resolvedProps} ref={ref}>
         {React.Children.map(props.children, (child, index) => {
           if (child.displayName === 'SliderThumb') {
-            return React.cloneElement(child as React.ReactElement, {
-              index,
-            });
+            return React.cloneElement(
+              child as React.ReactElement<{ index: number }>,
+              {
+                index,
+              }
+            );
           }
 
           return child;

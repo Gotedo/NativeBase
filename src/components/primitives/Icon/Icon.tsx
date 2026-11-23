@@ -18,7 +18,7 @@ const Icon = (props: IIconProps, ref?: any) => {
   const isJSX = React.isValidElement(as);
   const StyledAs = Factory(
     isJSX
-      ? (resolvedProps) =>
+      ? (resolvedProps: IIconProps) =>
           React.cloneElement(as, {
             ...resolvedProps,
             //@ts-ignore

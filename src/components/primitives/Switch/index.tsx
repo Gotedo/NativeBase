@@ -7,7 +7,7 @@ import { useToken } from '../../../hooks';
 import { makeStyledComponent } from '../../../utils/styled';
 import type { ISwitchProps } from './types';
 import { mergeRefs } from '../../../utils';
-import { useHover } from '@react-native-aria/interactions';
+import { useHover } from '../../../aria/interactions';
 import { useHasResponsiveProps } from '../../../hooks/useHasResponsiveProps';
 import { useFormControlContext } from '../../composites/FormControl';
 import { combineContextAndProps } from '../../../utils';

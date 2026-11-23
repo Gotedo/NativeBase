@@ -1,6 +1,6 @@
 import React from 'react';
 import { Badge } from 'native-base';
-import { select, text } from '@storybook/addon-knobs';
+import { select, text } from '../../../../controls';
 
 export function Example() {
   return (

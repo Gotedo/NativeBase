@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { MutableRefObject } from 'react';
 import type { InterfaceBoxProps } from '../../../components/primitives/Box';
 import type { IIconProps } from '../../primitives';

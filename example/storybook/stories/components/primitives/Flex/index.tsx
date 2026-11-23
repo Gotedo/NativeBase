@@ -1,12 +1,14 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import { Example as Flex } from './basic';
 import { Example as SpacerExample } from './spacer';
 import Wrapper from './../../Wrapper';
 
-storiesOf('Flex', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic Usage', () => <Flex />)
-  .add('Spacer Example', () => <SpacerExample />);
+export default {
+  title: 'Flex',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Basic Usage', render: () => <Flex /> };
+export const Story2 = {
+  name: 'Spacer Example',
+  render: () => <SpacerExample />,
+};

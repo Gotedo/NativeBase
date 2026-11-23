@@ -1,5 +1,6 @@
 import React from 'react';
-import { Stat, Heading, Box } from 'native-base';
+import { Heading, Box } from 'native-base';
+import Stat from '../../../../../../src/components/composites/Stat';
 
 export const Example = () => {
   return (

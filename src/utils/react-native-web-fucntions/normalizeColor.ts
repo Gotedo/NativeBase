@@ -2,7 +2,7 @@
 //@ts-nocheck
 // This functions is taken from react native web
 
-import ConvertNumberIntoHex from 'normalize-css-color';
+import ConvertNumberIntoHex from '@react-native/normalize-colors';
 
 const processColor = (color?: any): any => {
   if (color === undefined || color === null) {

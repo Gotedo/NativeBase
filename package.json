@@ -14,16 +14,16 @@
     "packager"
   ],
   "scripts": {
-    "test": "node_modules/.bin/jest",
+    "test": "jest",
     "typescript": "tsc --noEmit",
     "prepare": "bob build",
     "release": "release-it",
-    "example": "yarn --cwd example",
-    "pods": "cd example && pod-install --quiet",
-    "bootstrap": "yarn example && yarn && yarn pods",
-    "build:web": "rollup --config",
-    "bundle:analysis": "visualize-bundle",
-    "commit-test": "yarn prepare && cd example && yarn test && cd .."
+    "example": "npm --prefix example",
+    "pods": "npm --prefix RNBareExample run pods",
+    "bootstrap": "npm ci && npm --prefix RNBareExample ci && npm --prefix example ci && npm --prefix expo-example ci && npm --prefix next-example ci",
+    "typecheck": "tsc --noEmit",
+    "build": "bob build",
+    "typecheck:examples": "npm --prefix RNBareExample run typecheck && npm --prefix example run typecheck && npm --prefix expo-example run typecheck && npm --prefix next-example run typecheck"
   },
   "lint-staged": {
     "src/**/*.{js,ts,tsx}": [
@@ -41,89 +41,88 @@
   "private": false,
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
-  "types": "lib/typescript/src/index.d.ts",
+  "types": "lib/typescript/commonjs/src/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
-  "typings": "lib/typescript/index.d.ts",
+  "typings": "lib/typescript/commonjs/src/index.d.ts",
   "devDependencies": {
-    "@commitlint/config-conventional": "^8.3.4",
-    "@react-native-community/bob": "^0.16.2",
-    "@react-native-community/eslint-config": "^2.0.0",
-    "@release-it/conventional-changelog": "^1.1.4",
-    "@testing-library/react-hooks": "^5.0.3",
-    "@testing-library/react-native": "^7.1.0",
-    "@types/jest": "^26.0.0",
-    "@types/lodash.clonedeep": "^4.5.6",
-    "@types/lodash.get": "^4.4.6",
-    "@types/lodash.has": "^4.5.6",
-    "@types/lodash.isempty": "^4.4.6",
-    "@types/lodash.isequal": "^4.5.5",
-    "@types/lodash.isnil": "^4.0.6",
-    "@types/lodash.merge": "^4.6.6",
-    "@types/lodash.mergewith": "^4.6.6",
-    "@types/lodash.omit": "^4.5.6",
-    "@types/lodash.omitby": "^4.6.6",
-    "@types/lodash.pick": "^4.4.6",
-    "@types/lodash.uniqueid": "^4.0.7",
-    "@types/react": "^16.9.19",
-    "@types/react-native": "~0.63.2",
-    "@types/tinycolor2": "^1.4.2",
-    "@types/use-sync-external-store": "^0.0.3",
+    "@babel/core": "^7.28.0",
+    "@babel/runtime": "^7.28.0",
+    "@commitlint/config-conventional": "^21.2.4",
+    "@eslint/eslintrc": "^3.3.1",
+    "@react-native/babel-preset": "0.88.1",
+    "@react-native/eslint-config": "0.88.1",
+    "@react-native/jest-preset": "0.88.1",
+    "@react-native/metro-config": "0.88.1",
+    "@release-it/conventional-changelog": "^12.0.2",
+    "@testing-library/react-native": "^13.3.3",
+    "@types/jest": "^30.0.0",
+    "@types/lodash.clonedeep": "^4.5.9",
+    "@types/lodash.get": "^4.4.9",
+    "@types/lodash.has": "^4.5.9",
+    "@types/lodash.isempty": "^4.4.9",
+    "@types/lodash.isequal": "^4.5.8",
+    "@types/lodash.isnil": "^4.0.9",
+    "@types/lodash.merge": "^4.6.9",
+    "@types/lodash.mergewith": "^4.6.9",
+    "@types/lodash.omit": "^4.5.9",
+    "@types/lodash.omitby": "^4.6.9",
+    "@types/lodash.uniqueid": "^4.0.9",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/react-test-renderer": "^19.3.1",
+    "@types/tinycolor2": "^1.4.6",
+    "@types/use-sync-external-store": "^1.7.0",
+    "babel-jest": "^30.5.2",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "commitlint": "^8.3.5",
-    "eslint": "^7.10.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.3",
-    "husky": "^4.2.5",
-    "jest": "^26.0.1",
-    "jest-expo": "^40.0.1",
-    "lint-staged": "^11.1.1",
-    "metro-react-native-babel-preset": "^0.64.0",
-    "pod-install": "^0.1.0",
-    "postinstall-postinstall": "^2.1.0",
-    "prettier": "^2.0.5",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "react-native": "0.63.2",
-    "react-native-safe-area-context": "^3.1.9",
-    "react-native-svg": "^12.1.0",
-    "react-native-web": "^0.17.7",
-    "react-test-renderer": "^16.9.0",
-    "release-it": "^13.5.8",
-    "rollup": "^2.34.1",
-    "rollup-plugin-flow": "^1.1.1",
-    "typescript": "4.6",
-    "visualize-bundle": "^1.4.0"
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.7",
+    "jest": "^30.5.2",
+    "jest-environment-jsdom": "^30.5.2",
+    "lint-staged": "^17.6.2",
+    "pod-install": "^1.2.1",
+    "prettier": "^3.10.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-native": "0.88.1",
+    "react-native-builder-bob": "^0.44.1",
+    "react-native-safe-area-context": "^5.11.1",
+    "react-native-svg": "^15.16.1",
+    "react-native-web": "^0.21.4",
+    "react-test-renderer": "19.3.1",
+    "release-it": "^21.1.3",
+    "typescript": "^7.0.2",
+    "@types/inline-style-prefixer": "^5.0.3",
+    "@types/lodash": "^4.17.27"
   },
   "peerDependencies": {
-    "@types/react": "*",
-    "@types/react-native": "*",
-    "react": "*",
-    "react-dom": "*",
-    "react-native": "*",
-    "react-native-safe-area-context": "*",
-    "react-native-svg": "*"
+    "@types/react": "^19.1.1",
+    "react": ">=19.3.0 <20",
+    "react-dom": ">=19.3.0 <20",
+    "react-native": ">=0.88.0 <1",
+    "react-native-safe-area-context": ">=5.0.0 <6",
+    "react-native-svg": ">=15.0.0 <16"
   },
   "jest": {
-    "preset": "jest-expo",
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
-    },
-    "modulePathIgnorePatterns": [
-      "<rootDir>/example/*",
-      "<rootDir>/lib/"
+    "preset": "@react-native/jest-preset",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/lib/",
+      "/example/",
+      "/expo-example/",
+      "/next-example/",
+      "/RNBareExample/"
     ],
     "transformIgnorePatterns": [
-      "node_modules/(?!(@react-native|react-native|expo-asset|expo-constants|@unimodules|react-native-unimodules|expo-font|react-native-svg|@expo/vector-icons|react-native-vector-icons|@react-native-aria/checkbox|@react-native-aria/interactions|@react-native-aria/button|@react-native-aria/switch|@react-native-aria/toggle|@react-native-aria/utils|@react-native-aria/*))"
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?|@react-native-aria|@react-aria|@react-stately|@react-types|react-native-svg|react-native-safe-area-context)/)"
     ],
-    "setupFiles": [
-      "<rootDir>/src/jest/mock.ts"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn lint-staged"
+    "setupFilesAfterEnv": [
+      "<rootDir>/scripts/jest.setup.js"
+    ],
+    "watchman": false,
+    "moduleNameMapper": {
+      "^native-base$": "<rootDir>/src/index"
     }
   },
   "commitlint": {
@@ -163,40 +162,42 @@
     "trailingComma": "es5",
     "useTabs": false
   },
-  "@react-native-community/bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      [
-        "commonjs"
-      ],
-      [
-        "module"
-      ],
-      "typescript"
-    ]
-  },
   "dependencies": {
-    "@react-aria/visually-hidden": "^3.2.1",
-    "@react-native-aria/button": "^0.2.4",
-    "@react-native-aria/checkbox": "^0.2.3",
-    "@react-native-aria/combobox": "^0.2.4-alpha.0",
-    "@react-native-aria/focus": "^0.2.6",
-    "@react-native-aria/interactions": "^0.2.2",
-    "@react-native-aria/listbox": "^0.2.4-alpha.3",
-    "@react-native-aria/overlays": "^0.3.3",
-    "@react-native-aria/radio": "^0.2.4",
-    "@react-native-aria/slider": "^0.2.5-alpha.1",
-    "@react-native-aria/tabs": "^0.2.7",
-    "@react-native-aria/utils": "^0.2.8",
-    "@react-stately/checkbox": "3.0.3",
-    "@react-stately/collections": "3.3.0",
-    "@react-stately/combobox": "3.0.0-alpha.1",
-    "@react-stately/radio": "3.2.1",
-    "@react-stately/slider": "3.0.1",
-    "@react-stately/tabs": "3.0.0-alpha.1",
-    "@react-stately/toggle": "3.2.1",
-    "inline-style-prefixer": "^6.0.1",
+    "@react-aria/checkbox": "^3.17.1",
+    "@react-aria/combobox": "^3.16.1",
+    "@react-aria/focus": "^3.22.1",
+    "@react-aria/interactions": "^3.28.1",
+    "@react-aria/label": "^3.8.1",
+    "@react-aria/listbox": "^3.16.1",
+    "@react-aria/live-announcer": "^3.5.1",
+    "@react-aria/overlays": "^3.32.1",
+    "@react-aria/radio": "^3.13.1",
+    "@react-aria/selection": "^3.28.1",
+    "@react-aria/slider": "^3.9.1",
+    "@react-aria/ssr": "^3.10.1",
+    "@react-aria/tabs": "^3.12.1",
+    "@react-aria/utils": "^3.34.1",
+    "@react-aria/visually-hidden": "^3.9.1",
+    "@react-stately/checkbox": "^3.8.1",
+    "@react-stately/collections": "^3.13.1",
+    "@react-stately/combobox": "^3.14.1",
+    "@react-stately/list": "^3.14.1",
+    "@react-stately/overlays": "^3.7.1",
+    "@react-stately/radio": "^3.12.1",
+    "@react-stately/slider": "^3.8.1",
+    "@react-stately/tabs": "^3.9.1",
+    "@react-stately/toggle": "^3.10.1",
+    "@react-types/button": "^3.16.0",
+    "@react-types/checkbox": "^3.11.0",
+    "@react-types/combobox": "^3.13.0",
+    "@react-types/listbox": "^3.8.0",
+    "@react-types/overlays": "^3.10.0",
+    "@react-types/radio": "^3.10.0",
+    "@react-types/shared": "^3.37.0",
+    "@react-types/slider": "^3.8.0",
+    "@react-types/tabs": "^3.4.0",
+    "dom-helpers": "^5.0.0",
+    "inline-style-prefixer": "^7.0.1",
     "lodash.clonedeep": "^4.5.0",
     "lodash.get": "^4.4.2",
     "lodash.has": "^4.5.2",
@@ -205,24 +206,24 @@
     "lodash.isnil": "^4.0.0",
     "lodash.merge": "^4.6.2",
     "lodash.mergewith": "^4.6.2",
-    "lodash.omit": "^4.5.0",
+    "lodash.omit": "^4.18.0",
     "lodash.omitby": "^4.6.0",
-    "lodash.pick": "^4.4.0",
     "lodash.uniqueid": "^4.0.1",
-    "stable-hash": "^0.0.2",
-    "tinycolor2": "^1.4.2",
-    "use-sync-external-store": "^1.2.0"
+    "stable-hash": "^0.0.6",
+    "tinycolor2": "^1.6.0",
+    "use-sync-external-store": "^1.7.0",
+    "@react-native/normalize-colors": "0.88.1",
+    "lodash": "^4.18.1"
   },
   "directories": {
     "example": "example",
     "lib": "lib"
   },
-  "gitHead": "5bbeacc403ba97622703699132c55d8359344004",
-  "homepage": "https://github.com/GeekyAnts/NativeBase#readme",
+  "homepage": "https://github.com/Gotedo/NativeBase#readme",
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GeekyAnts/NativeBase.git"
+    "url": "git+https://github.com/Gotedo/NativeBase.git"
   },
   "collective": {
     "type": "opencollective",
@@ -231,6 +232,50 @@
   "files": [
     "src",
     "lib",
-    "cli.js"
-  ]
+    "cli.js",
+    "!src/**/*.test.ts",
+    "!src/**/*.test.tsx",
+    "!src/**/test/**",
+    "!src/**/__test__/**",
+    "!src/**/__tests__/**",
+    "!src/jest/**",
+    "!src/**/*.test.*"
+  ],
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+  },
+  "packageManager": "npm@11.20.0",
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "commonjs",
+        {
+          "esm": false
+        }
+      ],
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ],
+    "exclude": "**/{*.test.{js,jsx,ts,tsx},__tests__/**,__fixtures__/**,__mocks__/**,test/**,__test__/**,jest/**}"
+  }
 }

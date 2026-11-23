@@ -1,6 +1,6 @@
 import React from 'react';
 import { Radio, Box } from 'native-base';
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { boolean, select, text } from '../../../../controls';
 import { useState } from 'react';
 
 export const Example = () => {

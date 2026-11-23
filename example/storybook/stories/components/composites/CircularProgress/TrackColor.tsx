@@ -1,6 +1,6 @@
 import React from 'react';
 import { CircularProgress, Heading, Center } from 'native-base';
-import { text } from '@storybook/addon-knobs';
+import { text } from '../../../../controls';
 export const Example = () => {
   return (
     <Center>

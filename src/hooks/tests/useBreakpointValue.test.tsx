@@ -1,7 +1,7 @@
 import React from 'react';
 import { useBreakpointValue } from '../../hooks/useBreakpointValue';
 import { NativeBaseProvider } from '../../core/NativeBaseProvider';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react-native';
 
 describe('useBreakpointValue', () => {
   const wrapper = ({ children }: any) => (

@@ -1,3 +1,5 @@
+> **Gotedo compatibility fork:** this branch targets React Native 0.88+ and React 19.3+ with the New Architecture. See [COMPATIBILITY.md](./COMPATIBILITY.md) for setup, checks and native build commands.
+
 # <img src="https://raw.githubusercontent.com/GeekyAnts/NativeBase/master/img/header_new.png" alt="Nativebase Logo">
 
 [![Financial Contributors on Open Collective](https://opencollective.com/NativeBase/all/badge.svg?label=financial+contributors)](https://opencollective.com/NativeBase)

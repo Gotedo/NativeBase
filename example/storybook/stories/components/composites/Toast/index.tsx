@@ -1,6 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from '../../Wrapper';
 import { Example as ToastPositions } from './ToastPositions';
 import { Example as ToastVariants } from './VariantRecipies';
@@ -12,15 +10,34 @@ import { Example as PreventDuplicate } from './PreventDuplicate';
 import { Example as ToastStatus } from './StatusRecipies';
 import { Example as StandaloneToast } from './StandaloneToast';
 
-storiesOf('Toast', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Basic', () => <Basic />)
-  .add('Toast Positions', () => <ToastPositions />)
-  .add('Custom Component', () => <CustomComponent />)
-  .add('Custom Component with custom Id', () => <CustomComponentWithCustomId />)
-  .add('CloseToast', () => <CloseToast />)
-  .add('Prevent Duplicate', () => <PreventDuplicate />)
-  .add('Status Recipies', () => <ToastStatus />)
-  .add('Variants Recipies', () => <ToastVariants />)
-  .add('Toast Ref', () => <StandaloneToast />);
+export default {
+  title: 'Toast',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = { name: 'Basic', render: () => <Basic /> };
+export const Story2 = {
+  name: 'Toast Positions',
+  render: () => <ToastPositions />,
+};
+export const Story3 = {
+  name: 'Custom Component',
+  render: () => <CustomComponent />,
+};
+export const Story4 = {
+  name: 'Custom Component with custom Id',
+  render: () => <CustomComponentWithCustomId />,
+};
+export const Story5 = { name: 'CloseToast', render: () => <CloseToast /> };
+export const Story6 = {
+  name: 'Prevent Duplicate',
+  render: () => <PreventDuplicate />,
+};
+export const Story7 = {
+  name: 'Status Recipies',
+  render: () => <ToastStatus />,
+};
+export const Story8 = {
+  name: 'Variants Recipies',
+  render: () => <ToastVariants />,
+};
+export const Story9 = { name: 'Toast Ref', render: () => <StandaloneToast /> };

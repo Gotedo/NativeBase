@@ -8,8 +8,15 @@ export default function Factory<P>(
   Component: React.ComponentType<P>,
   componentTheme?: ComponentTheme
 ) {
-  return React.forwardRef(
-    ({ children, _state, ...props }: P & FactoryComponentProps, ref: any) => {
+  return React.forwardRef<unknown, P & FactoryComponentProps>(
+    (
+      {
+        children,
+        _state,
+        ...props
+      }: React.PropsWithoutRef<P & FactoryComponentProps>,
+      ref
+    ) => {
       const StyledComponent = useMemo(() => makeStyledComponent(Component), []);
       const calculatedProps = usePropsWithComponentTheme(
         componentTheme ?? {},

@@ -12,11 +12,15 @@ import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 interface IFormInput {
-  version: boolean;
+  version: number;
 }
 
 export const Example = () => {
-  const { control, handleSubmit, errors } = useForm<IFormInput>();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
   const onSubmit = (data: IFormInput) => {
     console.log('submiting with ', data);
   };
@@ -26,7 +30,7 @@ export const Example = () => {
         <FormControl.Label>Current Native Base Version:</FormControl.Label>
         <Controller
           control={control}
-          render={({ onChange, value }) => (
+          render={({ field: { onChange, value } }) => (
             <NumberInput
               onChange={(val: any) => onChange(val)}
               defaultValue={value}
@@ -46,7 +50,7 @@ export const Example = () => {
           {errors.version?.message}
         </FormControl.ErrorMessage>
       </FormControl>
-      <Button onPress={handleSubmit(onSubmit)} colorScheme="pink">
+      <Button onPress={() => handleSubmit(onSubmit)()} colorScheme="pink">
         Submit
       </Button>
     </VStack>

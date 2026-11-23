@@ -51,7 +51,7 @@ const HybridProvider = ({
   React.useEffect(() => {
     let escapeKeyListener: any = null;
 
-    if (Platform.OS === 'web') {
+    if (Platform.OS === 'web' && typeof document !== 'undefined') {
       escapeKeyListener = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
           if (keyboardDismissHandlerManager.length() > 0) {
@@ -64,7 +64,7 @@ const HybridProvider = ({
     }
 
     return () => {
-      if (Platform.OS === 'web') {
+      if (Platform.OS === 'web' && typeof document !== 'undefined') {
         document.removeEventListener('keydown', escapeKeyListener);
       }
     };

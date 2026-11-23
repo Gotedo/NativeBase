@@ -1,6 +1,6 @@
 import React from 'react';
 import { PinInput } from 'native-base';
-import { select, text } from '@storybook/addon-knobs';
+import { select, text } from '../../../../controls';
 
 export const Example = () => {
   return (

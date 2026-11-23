@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import React, { memo, forwardRef } from 'react';
 import { default as Box, InterfaceBoxProps } from '../Box';
 import { getSpacedChildren } from '../../../utils';

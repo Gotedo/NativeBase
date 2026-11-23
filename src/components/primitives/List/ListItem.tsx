@@ -4,7 +4,7 @@ import type { IListItemProps } from './types';
 import { usePropsResolution } from '../../../hooks/useThemeProps';
 import { mergeRefs } from '../../../utils';
 import { Pressable } from '../Pressable';
-// import { useHover } from '@react-native-aria/interactions';
+// import { useHover } from '../../../aria/interactions';
 import { extractInObject } from '../../../theme/tools';
 import { composeEventHandlers } from '../../../utils';
 import {
@@ -48,29 +48,29 @@ const ListItem = ({ children, ...props }: IListItemProps, ref: any) => {
   }
 
   // Extracting Pressable Props from resolvedProps
-  const [
-    pressableComponentProps,
-    nonPressableProps,
-  ] = extractInObject(resolvedProps, [
-    'onPress',
-    'unstable_pressDelay',
-    'android_ripple',
-    'android_disableSound',
-    'delayLongPress',
-    'hitSlop',
-    'disabled',
-    'onLongPress',
-    'onPressIn',
-    'onPressOut',
-    'pressRetentionOffset',
-    'testOnly_pressed',
-    'onHoverIn',
-    'onHoverOut',
-    'onFocus',
-    'onBlur',
-    '_pressed',
-    '_focus',
-  ]);
+  const [pressableComponentProps, nonPressableProps] = extractInObject(
+    resolvedProps,
+    [
+      'onPress',
+      'unstable_pressDelay',
+      'android_ripple',
+      'android_disableSound',
+      'delayLongPress',
+      'hitSlop',
+      'disabled',
+      'onLongPress',
+      'onPressIn',
+      'onPressOut',
+      'pressRetentionOffset',
+      'testOnly_pressed',
+      'onHoverIn',
+      'onHoverOut',
+      'onFocus',
+      'onBlur',
+      '_pressed',
+      '_focus',
+    ]
+  );
 
   return Object.keys(pressableComponentProps).length !== 0 ? (
     // Checking if any Pressable Props present

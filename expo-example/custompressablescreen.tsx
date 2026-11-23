@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
-import { Button } from "./components/button";
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import { Button } from './components/button';
 export const CustomButtonScreen = () => {
   let start = 0,
     end = 0;
@@ -8,7 +9,7 @@ export const CustomButtonScreen = () => {
   const [pressed, setPressed] = useState(false);
   useEffect(() => {
     end = Date.now();
-    console.log("Custom Button Diff", end - start);
+    console.log('Custom Button Diff', end - start);
   }, [pressed]);
   return (
     <View style={styles.container}>
@@ -20,8 +21,8 @@ export const CustomButtonScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

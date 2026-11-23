@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { TextInputProps } from 'react-native';
 import type { StyledProps } from '../../../theme/types';
 import type { PlatformProps } from '../../types';
@@ -13,7 +14,8 @@ import type { IStackProps } from '../Stack/Stack';
 import type { MutableRefObject, RefCallback } from 'react';
 
 export interface InterfaceInputProps
-  extends PlatformProps<IInputProps>,
+  extends
+    PlatformProps<IInputProps>,
     Omit<TextInputProps, 'textAlign'>,
     StyledProps {
   /**

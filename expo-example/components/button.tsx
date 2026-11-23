@@ -1,5 +1,6 @@
-import { Pressable, Text, View, Platform } from "react-native";
-import { useEffect, useState } from "react";
+import React from 'react';
+import { Pressable, Text, View, Platform } from 'react-native';
+import { useEffect, useState } from 'react';
 
 export const Button = ({ children, onPress }: any) => {
   const [pressed, setPressed] = useState(false);
@@ -13,13 +14,13 @@ export const Button = ({ children, onPress }: any) => {
         setPressed(false);
       }}
       style={{
-        backgroundColor: pressed ? "red" : "green",
+        backgroundColor: pressed ? 'red' : 'green',
         padding: 10,
         borderRadius: 5,
         margin: 5,
       }}
     >
-      <Text style={{ color: pressed ? "#000" : "#fff" }}>{children}</Text>
+      <Text style={{ color: pressed ? '#000' : '#fff' }}>{children}</Text>
     </Pressable>
   );
 };

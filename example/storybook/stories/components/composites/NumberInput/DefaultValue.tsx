@@ -10,7 +10,7 @@ import {
 export const Example = () => {
   return (
     <Stack w="90%">
-      <NumberInput defaultValue="5">
+      <NumberInput defaultValue={5}>
         <NumberInputField />
         <NumberInputStepper>
           <NumberIncrementStepper />

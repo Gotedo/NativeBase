@@ -1,6 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react-native';
-import { withKnobs } from '@storybook/addon-knobs';
 import Wrapper from './../../Wrapper';
 import { Example as Playground } from './playground';
 import { Example as Disabled } from './disabled';
@@ -13,16 +11,26 @@ import { Example as WithRef } from './withRef';
 import { Example as ControlledRadio } from './controlledRadio';
 import { Example as UncontrolledRadio } from './uncontrolledRadio';
 
-storiesOf('Radio', module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory: any) => <Wrapper>{getStory()}</Wrapper>)
-  .add('Controlled Radio', () => <ControlledRadio />)
-  .add('Uncontrolled Radio', () => <UncontrolledRadio />)
-  .add('Playground', () => <Playground />)
-  .add('Disabled', () => <Disabled />)
-  .add('Invalid', () => <Invalid />)
-  .add('Size', () => <Size />)
-  .add('Custom Color', () => <CustomColor />)
-  .add('Custom Icon', () => <CustomIcon />)
-  .add('Form Controlled', () => <FormControlled />)
-  .add('With Ref', () => <WithRef />);
+export default {
+  title: 'Radio',
+  decorators: [(getStory: any) => <Wrapper>{getStory()}</Wrapper>],
+};
+export const Story1 = {
+  name: 'Controlled Radio',
+  render: () => <ControlledRadio />,
+};
+export const Story2 = {
+  name: 'Uncontrolled Radio',
+  render: () => <UncontrolledRadio />,
+};
+export const Story3 = { name: 'Playground', render: () => <Playground /> };
+export const Story4 = { name: 'Disabled', render: () => <Disabled /> };
+export const Story5 = { name: 'Invalid', render: () => <Invalid /> };
+export const Story6 = { name: 'Size', render: () => <Size /> };
+export const Story7 = { name: 'Custom Color', render: () => <CustomColor /> };
+export const Story8 = { name: 'Custom Icon', render: () => <CustomIcon /> };
+export const Story9 = {
+  name: 'Form Controlled',
+  render: () => <FormControlled />,
+};
+export const Story10 = { name: 'With Ref', render: () => <WithRef /> };

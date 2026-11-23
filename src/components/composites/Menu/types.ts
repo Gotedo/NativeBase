@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { ITextProps } from '../../primitives/Text';
 import type { InterfaceBoxProps } from '../../primitives/Box/types';
 import type { IPressableProps } from '../../primitives/Pressable';

@@ -4,19 +4,14 @@ import { useAccessibleColors } from '../core/color-mode/hooks';
 import { useNativeBaseConfig } from '../core/NativeBaseContext';
 
 export function useContrastText(bg: string, color?: string) {
-  const [
-    contrastThreshold,
-    trueDarkText,
-    trueLightText,
-    trueBg,
-    trueColor,
-  ] = useToken('colors', [
-    'contrastThreshold',
-    'darkText',
-    'lightText',
-    bg,
-    color ?? '',
-  ]);
+  const [contrastThreshold, trueDarkText, trueLightText, trueBg, trueColor] =
+    useToken('colors', [
+      'contrastThreshold',
+      'darkText',
+      'lightText',
+      bg,
+      color ?? '',
+    ]);
 
   const suppressColorAccessibilityWarning = useNativeBaseConfig(
     'NativeBaseConfigProvider'
@@ -39,7 +34,7 @@ export function useContrastText(bg: string, color?: string) {
     themeColorsThresholdShades[bgThemeColorVariant]
       ? getContrastThemeColor(bgThemeColorVariant, bgShade)
       : getAccessibleContrastColor(
-          contrastThreshold,
+          Number(contrastThreshold),
           trueDarkText,
           trueLightText,
           trueBg,

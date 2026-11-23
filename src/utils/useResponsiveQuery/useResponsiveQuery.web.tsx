@@ -128,8 +128,9 @@ const getResponsiveStyles = (
 
   const styles = queries.initial
     ? [
-        StyleSheet.create({ initial: StyleSheet.flatten(queries.initial) })
-          .initial,
+        StyleSheet.create({
+          initial: StyleSheet.flatten(queries.initial) ?? {},
+        }).initial,
       ]
     : undefined;
 

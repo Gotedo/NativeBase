@@ -5,11 +5,15 @@ import { useForm, Controller } from 'react-hook-form';
 interface IFormInput {
   firstName: string;
   lastName: string;
-  age: number;
+  age: string;
 }
 
 export const Example = () => {
-  const { control, handleSubmit, errors } = useForm<IFormInput>();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
   const onSubmit = (data: IFormInput) => {
     console.log('submiting with ', data);
   };
@@ -19,7 +23,7 @@ export const Example = () => {
         <FormControl.Label>First Name</FormControl.Label>
         <Controller
           control={control}
-          render={({ onChange, onBlur, value }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               onBlur={onBlur}
               placeholder="John"
@@ -39,7 +43,7 @@ export const Example = () => {
         <FormControl.Label>Last Name</FormControl.Label>
         <Controller
           control={control}
-          render={({ onChange, onBlur, value }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               onBlur={onBlur}
               placeholder="Doe"
@@ -58,7 +62,7 @@ export const Example = () => {
         <FormControl.Label>Age</FormControl.Label>
         <Controller
           control={control}
-          render={({ onChange, onBlur, value }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               onBlur={onBlur}
               placeholder="24"
@@ -73,10 +77,12 @@ export const Example = () => {
         <FormControl.ErrorMessage>
           {errors.age?.type === 'required'
             ? errors.age?.message
-            : errors.age?.type === 'min' ?? 'Under age'}
+            : errors.age?.type === 'min'
+              ? 'Under age'
+              : undefined}
         </FormControl.ErrorMessage>
       </FormControl>
-      <Button onPress={handleSubmit(onSubmit)} colorScheme="pink">
+      <Button onPress={() => handleSubmit(onSubmit)()} colorScheme="pink">
         Submit
       </Button>
     </VStack>

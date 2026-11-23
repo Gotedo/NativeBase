@@ -1,6 +1,6 @@
 import React, { createContext, memo, forwardRef, useMemo } from 'react';
 import { useCheckboxGroupState } from '@react-stately/checkbox';
-import { useCheckboxGroup } from '@react-native-aria/checkbox';
+import { useCheckboxGroup } from '../../../aria/checkbox';
 import { useFormControlContext } from '../../composites/FormControl';
 import type { ICheckboxGroupProps, ICheckboxContext } from './types';
 import Box from '../Box';
@@ -17,9 +17,10 @@ function CheckboxGroup(
 ) {
   const resolvedProps = usePropsResolution('CheckboxGroup', props);
   const { children } = props;
-  const state = useCheckboxGroupState(props);
+  const { onFocus: _onFocus, onBlur: _onBlur, ...ariaProps } = props;
+  const state = useCheckboxGroupState(ariaProps);
   const { groupProps } = useCheckboxGroup(
-    { 'aria-label': props.accessibilityLabel, ...props },
+    { 'aria-label': props.accessibilityLabel, ...ariaProps },
     state
   );
   const formControlContext = useFormControlContext();

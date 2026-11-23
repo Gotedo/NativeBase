@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { CheckboxGroupState } from '@react-stately/checkbox';
 import type { MutableRefObject } from 'react';
 import type { TouchableOpacityProps } from 'react-native';
@@ -138,8 +139,7 @@ export interface InterfaceCheckbox extends InterfaceBoxProps<ICheckboxProps> {
   wrapperRef?: any;
   ref?: MutableRefObject<any>;
 }
-export interface ICheckboxGroupProps
-  extends InterfaceBoxProps<ICheckboxGroupProps> {
+export interface ICheckboxGroupProps extends InterfaceBoxProps<ICheckboxGroupProps> {
   /**
    * assign id to checkbox group
    */
