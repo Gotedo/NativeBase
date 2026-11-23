@@ -42,3 +42,7 @@ jobs:
       - if: matrix.example == 'example' || matrix.example == 'expo-example'
         run: npx expo export --platform web
         working-directory: ${{ matrix.example }}
+      - if: matrix.example == 'example'
+        run: npx playwright install --with-deps chromium
+      - if: matrix.example == 'example'
+        run: npm run test:storybook:web

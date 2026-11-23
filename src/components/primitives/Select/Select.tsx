@@ -51,6 +51,11 @@ const Select = (
 
   const { focusProps, isFocusVisible } = useFocusRing();
   const { hoverProps, isHovered } = useHover({ isDisabled }, _ref);
+  const {
+    onHoverIn: _onHoverIn,
+    onHoverOut: _onHoverOut,
+    ...domHoverProps
+  } = hoverProps;
 
   const {
     onValueChange,
@@ -237,7 +242,7 @@ const Select = (
         required={selectProps.required}
         disabled={isDisabled}
         {...focusProps}
-        {...hoverProps}
+        {...domHoverProps}
         ref={mergeRefs([ref, _ref])}
         //@ts-ignore
         onChange={(e) => {

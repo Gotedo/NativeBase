@@ -43,6 +43,24 @@ The historical Storyshots fixtures in `example/tests` predate React 19 and
 Storybook 10. Their old snapshot runner is not part of these compatibility checks;
 `npm --prefix example test` runs the current library compatibility suite.
 
+## Storybook browser regression
+
+```sh
+npx playwright install chromium
+npm run test:storybook:web
+```
+
+The browser check starts its own Expo server on port 8191 and uses one Chromium
+worker. It renders Formik Basic, React Hook Form Usage and DemoForm, FlatList
+Basic and ScrollView Basic, exercises form input, and fails on React/runtime
+console errors. CI runs this check in addition to exporting the web bundle.
+
+Both Expo examples resolve shared React and native renderer peers from their own
+application directory, including imports originating in the library source.
+`nodeModulesPaths` and `extraNodeModules` alone do not override the library's
+nearer development dependencies. After changing Metro configuration, stop the
+existing server and restart with `npm --prefix example run web -- --clear`.
+
 ## Native builds with one architecture
 
 The bare example defaults to Android `arm64-v8a`, Hermes, the New Architecture and

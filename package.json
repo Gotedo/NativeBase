@@ -23,7 +23,8 @@
     "bootstrap": "npm ci && npm --prefix RNBareExample ci && npm --prefix example ci && npm --prefix expo-example ci && npm --prefix next-example ci",
     "typecheck": "tsc --noEmit",
     "build": "bob build",
-    "typecheck:examples": "npm --prefix RNBareExample run typecheck && npm --prefix example run typecheck && npm --prefix expo-example run typecheck && npm --prefix next-example run typecheck"
+    "typecheck:examples": "npm --prefix RNBareExample run typecheck && npm --prefix example run typecheck && npm --prefix expo-example run typecheck && npm --prefix next-example run typecheck",
+    "test:storybook:web": "playwright test --config playwright.storybook.config.cjs"
   },
   "lint-staged": {
     "src/**/*.{js,ts,tsx}": [
@@ -50,13 +51,16 @@
     "@babel/runtime": "^7.28.0",
     "@commitlint/config-conventional": "^21.2.4",
     "@eslint/eslintrc": "^3.3.1",
+    "@playwright/test": "^1.65.1",
     "@react-native/babel-preset": "0.88.1",
     "@react-native/eslint-config": "0.88.1",
     "@react-native/jest-preset": "0.88.1",
     "@react-native/metro-config": "0.88.1",
     "@release-it/conventional-changelog": "^12.0.2",
     "@testing-library/react-native": "^13.3.3",
+    "@types/inline-style-prefixer": "^5.0.3",
     "@types/jest": "^30.0.0",
+    "@types/lodash": "^4.17.27",
     "@types/lodash.clonedeep": "^4.5.9",
     "@types/lodash.get": "^4.4.9",
     "@types/lodash.has": "^4.5.9",
@@ -92,9 +96,7 @@
     "react-native-web": "^0.21.4",
     "react-test-renderer": "19.3.1",
     "release-it": "^21.1.3",
-    "typescript": "^7.0.2",
-    "@types/inline-style-prefixer": "^5.0.3",
-    "@types/lodash": "^4.17.27"
+    "typescript": "^7.0.2"
   },
   "peerDependencies": {
     "@types/react": "^19.1.1",
@@ -178,6 +180,7 @@
     "@react-aria/tabs": "^3.12.1",
     "@react-aria/utils": "^3.34.1",
     "@react-aria/visually-hidden": "^3.9.1",
+    "@react-native/normalize-colors": "0.88.1",
     "@react-stately/checkbox": "^3.8.1",
     "@react-stately/collections": "^3.13.1",
     "@react-stately/combobox": "^3.14.1",
@@ -198,6 +201,7 @@
     "@react-types/tabs": "^3.4.0",
     "dom-helpers": "^5.0.0",
     "inline-style-prefixer": "^7.0.1",
+    "lodash": "^4.18.1",
     "lodash.clonedeep": "^4.5.0",
     "lodash.get": "^4.4.2",
     "lodash.has": "^4.5.2",
@@ -211,9 +215,7 @@
     "lodash.uniqueid": "^4.0.1",
     "stable-hash": "^0.0.6",
     "tinycolor2": "^1.6.0",
-    "use-sync-external-store": "^1.7.0",
-    "@react-native/normalize-colors": "0.88.1",
-    "lodash": "^4.18.1"
+    "use-sync-external-store": "^1.7.0"
   },
   "directories": {
     "example": "example",
